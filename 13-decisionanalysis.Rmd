@@ -6,6 +6,21 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Pendahuluan {#label1}
 
+<<<<<<< HEAD
+Analisis keputusan atau *Decision Analysis* (DA) secara sederhana didefinisikan sebagai sebuah proses dalam pemilihan alternatif yang paling sesuai dengan tujuan yang telah ditetapkan. Didalam literatur, Analisis keputusan dijelaskan sebagai sebuah prosedur yang sistematis dalam men-trasformasikan masalah-masalah pengambilan keputusan yang masih buram menjadi sebuah keputusan yang jelas dengan urutan langkah yang transparan.
+
+Penggunaan analisis keputusan dalam penilaian kelayakan proyek memberikan gambaran yang lebih baik terhadap _Opportunity_ yang dimiliki, risiko yang berpotensi terjadi, Informasi yang diperlukan dan menilai kesiapan untuk melakukan pekerjaan tersebut. Analisis keputusan juga mengharuskan pengambil keputusan untuk melakukan serangkaian pengumpulan informasi terkait, memetakan variabel-variabel ketidakpastian dan melakukan komunikasi dengan _stakeholder_, sehingga hasil dari analisis keputusan akan meningkatkan kepercayaan diri dari pengambil keputusan. 
+Analisis Pohon Keputusan atau _Decision Tree Analysis_ (DTA) merupakan salah satu metode yang paling sering digunakan dalam proses pengambilan keputusan, implementasi penggunaan metode ini dalam teknik perminyakan sejauh ini sering ditujukan pada tahap eksplorasi(Bratfold,2010). 
+
+## Stuktur Analisis Pohon Keputusan _(Decision Tree Analysis)_ 
+### Elemen Analisis Pohon Keputusan 
+#### _Alternatives_
+#### _Objectives_
+#### _Information_
+#### _Payoff_
+#### _Decision_
+### Notasi Baku Analisis Pohon Keputusan
+=======
 Analisis keputusan atau *Decision Analysis*(DA) secara sederhana didefinisikan sebagai sebuah proses dalam pemilihan alternatif yang paling sesuai dengan tujuan yang telah ditetapkan. Didalam literatur, Analisis keputusan dijelaskan sebagai sebuah prosedur yang sistematis dalam men-trasformasikan masalah-masalah pengambilan keputusan yang masih belum jelas menjadi sebuah keputusan yang lebih jelas dengan urutan langkah yang transparan.
 
 Penggunaan analisis keputusan dalam penilaian kelayakan proyek memberikan gambaran yang lebih baik terhadap _opportunity_ yang dimiliki, mengevaluasi potensi risiko, memberikan gambaran Informasi apa saja yang diperlukan dan menilai kesiapan untuk melakukan pekerjaan tersebut. Dalam konteks pengambilan keputusan, _decision analysis_ sebaiknya dilihat sebagai sebuah komunikasi antara pengambil keputusan dengan _decision facilitator_ yang bertujuan memberikan _insight_, sehingga hasil dari analisis keputusan diharapkan memberikan gambaran terbaik terhadap opsi yang dimiliki. 
@@ -13,6 +28,7 @@ Penggunaan analisis keputusan dalam penilaian kelayakan proyek memberikan gambar
 Adanya faktor _uncertainty_ baik yang disertakan maupun diluar dari batasannya, memungkinkan bahwa hasil terbaik dari _decision analysis_ bisa jadi tidak linier terhadap kesuksesan proyek. Untuk mengurangi akibat dari ketidakakuratan hasil analisis, diperlukan proses analisis keputusan secara bertahap dengan perubahan informasi baru yang dimiliki seiring perjalanan proyek.
 
 Analisis Pohon Keputusan atau _Decision Tree Analysis_ (DTA) merupakan salah satu metode yang paling sering digunakan dalam proses pengambilan keputusan, implementasi penggunaan metode ini dalam teknik perminyakan sejauh ini sering ditujukan pada tahap eksplorasi [@Bratvold2010]. 
+>>>>>>> 3ff76e03449c8dfc9c7cdf62a65e644965db296c
 
 Modul *Decision Analyis* **PertaEOR** menggunakan metode DTA dalam melakukan evalusi sebuah proyek. Modul ini didesain secara khusus untuk proyek-proyek EOR. _Workflow_  pada modul DTA untuk **PertaEOR** telah diintegrasikan dengan modul lainnya yang telah ada, seperti: Modul _screening_, Modul _predictive model_, Modul keekonomian dan modul analisis monte carlo.
 
@@ -20,8 +36,6 @@ Modul *Decision Analyis* **PertaEOR** menggunakan metode DTA dalam melakukan eva
 Istilah Decision Facilitator adalah untuk memberikan cakupan yang lebih luas 
 dari individu-individu yang harus terlibat dalam proses pendefinisian pengambilan keputusan.  
 ``` [@Mcnamee2001]
-
-
 
 ## Stuktur Analisis Pohon Keputusan _(Decision Tree Analysis)_ {#label2}
 Analisis pohon keputusan atau _Decision Tree Analysis (DTA)_ merupakan salah satu metode pengambilan keputusan yang menggunakan _tree-model_ dalam memvisualisasikan opsi dan kemungkinan yang berpotensi terjadi. DTA secara terstruktur akan memetakan opsi-opsi dan kemungkinan dari sebuah kejadian menjadi sebuah cabang-cabang pohon _(tree brach)_. Proses perhitungan di _tree brach_ sangat bergantung dari _tree node_ yang di pilih, dua jenis _tree node_ yang digunakan pada DTA adalah _option node_ dan _uncertainty node_. _Option node_ adalah titik yang akan memberikan cabang berupa opsi yang bisa di pilih dan disertakan, sedangkan _uncertainty node_ adalah titik yang menggambarkan variabel _uncertainty_ dalam sebuah kejadian. Selanjutnya _uncertainty_ akan direpresentasikan dalam sebuah nilai probabilitas, hal ini akan lebih detil dijelaskan pada seksi \@ref(label19) dan seksi \@ref(label20).
@@ -69,26 +83,74 @@ knitr::include_graphics("images/decisionanalysis/elm.png")
 knitr::include_graphics("images/decisionanalysis/flow.png")
 ```
 
+<<<<<<< HEAD
+
+#### _Decision Quality_
+=======
 ### _Framing The Problem_ {#label12}
 
 ```{r fig.align = 'center', out.width = "45%", fig.cap = "_Decision Tree Analysis_"}
 knitr::include_graphics("images/decisionanalysis/fram1.png")
 ```
 
+_Framing_ adalah memastikan bahwa terdapat orang-orang yang tepat untuk mengatasi suatu masalah dengan perspektif yang tepat. Terdapat tiga dimensi kunci dalam melakukan _framing_ dengan tepat: tujuan, cakupan, dan perspektif. Ketika tim memulai pekerjaan dalam suatu keputusan, pada beberapa kesempatan terdapat beberapa anggota yang tidak setuju dengan apa yang dilakukan. Tujuan yang jelas harus ditetapkan dan disetujui sebelum tim memulai pekerjaan.
+Dimensi cakupan dalam _framing_ biasanya mudah dilakukan dan dipahami. Cakupan bertujuan untuk menetapkan batasan masalah, jenis-jenis solusi, sumber informasi yang akan membantu dalam penentuan solusi, dan kriteria yang akan digunakan pada pilihan.
+
+Dimensi perspektif pada _framing_ lebih sulit untuk dideskripsikan. Kita memiliki metode dalam menghadapi berbagai informasi yang kita terima. Analoginya bahwa setiap orang sudah memiliki saringan tersendiri: beberapa informasi diklasifikasikan tidak relevan dan tidak digunakan dari awal proses pembentukan persepsi. Analogi lain adalah suatu bingkai gambar: kita menaruh bingkai di sekeliling masalah, mengeluarkan beberapa hal pada gambar dan memasukkan beberapa hal ke dalamnya. Ketika masalah lintas displin terjadi, penyaringan masalah perlu direvisi dan _frame_ perlu diluaskan. Tidak mungkin tim dapat berpikir strategis atau dapat mengimplementasikan, kecuali jika seluruh anggota memiliki _frame_ yang sama. Kesuksesan dalam _framing_ telah terbukti sangat krusial dalam menentukan kualitas keputusan. Proses-proses utama dan produk-produk pada proses _framing_ adalah sebagi berikut:
+
+1. __Issue Raising__: Kegiatan ini memiliki tiga tujuan: memunculkan materi yang akan dibahas sebanyak mungkin, menyoroti _frame_ antar sesama anggota tim, dan mengembangkan rasa kepemilikan tim terhadap keputusan yang akan diselesaikan.
+2. __Project Vision Statement__: Dilakukan dengan menjawab empat pertanyaan mendasar: Apa yang akan kita lakukan? Kenapa kita melakukan ini? Bagaimana kita tahu bahwa kita akan berhasil? Bagaimana jika gagal?
+3. __Decision Hierarchy__: Merupakan _tools_ yang digunakan untuk menjabarkan rangkaian keputusan yang kompleks seperti gambar di bawah ini.
+```{r fig.align = 'center', out.width = "45%", fig.cap = "_Strategy Table_"}
+knitr::include_graphics("images/decisionanalysis/st.png")
+```
+5. __Influence Diagram__: Merupakan _tools_ yang dihunakan untuk melacak keputusan, ketidakpastian, dan keterhubungan di antara keduanya. _Influence diagram_ sangat penting untuk mengembangkan pemahaman tim proyek terhadap masalah dan dalam mengatur pekerjaan.
+```{r fig.align = 'center', out.width = "45%", fig.cap = "_Influence Diagram_"}
+knitr::include_graphics("images/decisionanalysis/id.png")
+```
+6. __Decision Criterion__: Sebelum keputusan dibuat, kriteria keputusan harus ditetapkan dan disetujui bersama. Kriteria terpenting dalam pengambilan keputusan biasanya adalah NPV. 
+
 ### _Deterministic Analysis_ {#label13}
 
 ```{r fig.align = 'center', out.width = "45%", fig.cap = "_Decision Tree Analysis_"}
 knitr::include_graphics("images/decisionanalysis/sens.png")
 ```
+_Deterministic analysis_ digunakan untuk mengevaluasi keekonomian model dari setiap strategi yang telah didapat dari proses _framing_. Penilaian kecenderungan variabilitas dilakukan untuk setiap parameter untuk mengetahui parameter mana yang memiliki pengaruh besar terhadap keekonomian. Proses ini dilakukan dengan menggunakan _Tornado Chart_ arau _Spider Chart_ dengan melakukan variasi: nilai _low_, _base_, dan _high_ untuk setiap parameternya.
 
 ### _Probabilistic Analysis_ {#label14}
 ```{r fig.align = 'center', out.width = "45%", fig.cap = "_Decision Tree Analysis_"}
 knitr::include_graphics("images/decisionanalysis/forward.png")
 ```
+Bilamana _deterministic analysis_ berfokus untuk mengkuantifikasi pengaruh setiap parameter terhadap keekonomian proyek maka dalam _probabilistic analysis_, seluruh parameter divariasikan secara bersamaan dan pengaruh parameter ketidakpastian yang dikombinasikan dalam proyek dikuantifikasikan sebagai _economic value_ dengan probabilitas terkait yang terjadi. _Expected Value_ (EV) dan probabilitas hasil rata-rata beban juga dihitung. Model probabilistik dibangun dari _decision tree analysis_. Parameter-parameter yang mendominasi dalam _Tornado Chart_ digunakan untuk membangun _decision tree_. _Decision tree_ digunakan untuk mengevaluasi seluruh kombinasi kemungkinan hasil yang mungkin terjadi dengan setiap probabilitasnya dan NPV untuk setiap opsi pengembangan. Hasil dari _decision tree analysis_ digambarkan dalam bentuk _Cummulative Distribution Function_ atau _Expectation Curve_ dengan NPV berada di sumbu x dan probabilitas kumulatifnya berada di sumbu y.
 
 ### _Appraisal_ {#label15}
 
 #### _Value of Information_ {#label16}
+
+Kebanyakan kegiatan yang _petroleum engineer_ dan _geoscientist_ lakukan, melibatkan kegiatan memperoleh informasi dari satu kegiatan lain ke yang lain. Istilah "informasi" di sini bermakna luas yang mencakup pengambilan data, melakukan studi teknis, menyewa konsultan, melakukan tes diagnostik, dan seterusnya. Harapannya adalah bahwa mengurangi ketidakpastian meningkatkan kesempatan untuk mendapatkan hasil yang diinginkan. Namun nyatanya, alasan satu-satunya dilakukan kegiatan pengumpulan informasi atau analisis teknis adalah untuk memenuhi persyaratan peraturan. Pertanyaan mendasar untuk proses mendapatkan informasi adalah apakah pengurangan ketidakpastian itu sebanding dengan biaya untuk mendapatkan informasi. _Value of Information_ (VoI) dirancang untuk menjawab pertanyaan tersebut.
+
+Tujuan dari perhitungan VoI, yakni untuk mengestimasi nilai dari kegiatan pengumpulan informasi sehingga suatu keputusan akan diimplementasikan atau tidaknya dibuat berdasarkan basis ekonomi. Agar informasi memiliki nilai, maka perlu adanya perhitungan probabilistik antara informasi dan hasil dari suatu kejadian ketidakpastian. Dalam perhitungan VoI diperlukan beberapa informasi sebagai berikut:
+
+1. _Prior probability_, estimasi probabilitas dari kemungkinan hasil yang dapat diambil kuantitasnya (misalnya terdapat peluang 30% _recovery factor_ rendah dan peluang 70% _recovery factor_ tinggi).
+2. _Reliaility(likelihood)_, estimasi probabilitias efisiensi suatu informasi dalam memprediksi hasil (misalnya saat _recovery factor_ diketahui tinggi, studi simulasi reservoir 3D mengindikasikan dengan benar sebesar 80%).
+3. Nilai moneter proyek untuk setiap kombinasi hasil yang memungkinkan (contohnya NPV 600 USD jika _recovery factor_ tinggi dan NPV 100 USD jika rendah).
+
+Dalam menghitung VoI, perhitungan biasanya dilakukan dengan menggunakan _decision tree_. Terdapat dua _decision tree_ yang dihitung, yaitu nilai proyek dengan estimasi probabilitas yang ada dan perkiraan nilai projek baru dengan probabilitas yang diperbarui setelah adanya kegiatan memperoleh informasi. Perbedaan kedua nilai tersebut disebut sebagi _expected VoI_. Nilai _expected VoI_ terbagi menjadi dua, yaitu:
+
+1. EVPI (*Expected Value of Perfect Information*), nilai tersebut diperoleh ketika suatu kegiatan mampu memperoleh hasil informasi dengan tingkat akurasi 100%.
+2. EVII (*Expected Value of Imperfect Information*), adapun terdapat kondisi dimana informasi yang didapat tidaklah selalu dapat memberikan kepastian (tingkat akurasi di abwah 100%).
+
+Pada dua nilai tersebut, EVPI merupakan batas atas nilai suatu informasi. Di sisi lain bisa jadi kegiatan pengambilan informasi ini tidak mengakibatkan adanya perubahan probilitas. _Expected value_ ini dapat dijadikan acuan _decision maker_ untuk membuat keputusan apakah akan melakukan kegiatan untuk memperoleh informasi atau tidak. Ketika nilai _expected value_ berada di bawah biaya untuk memperoleh informasi maka jawabannya jelas, yaitu tidak perlu diproses. Namun, ketika _expected value_ nilainya ada di ata biaya untuk memperoleh informasi maka _decision maker_ dapat mempertimbangkannya. Terdapat beberapa langkah dalam menghitung VoI sebagai berikut:
+
+1. Menghitung _expected value_ suatu keputusan yang akan dibuat pada kondisi belum terdapat informasi atau bisa disebut dengan istilah _base project_.
+2. Mengformulasi struktur _decision tree_ untuk memasukkan informasi baru. Dimulai dengan menambahkan _branch_ baru pada _node_ pertama pada _decision tree_ untuk merepresentasikan pilihan untuk memperoleh informasi. _Branch_ ini harus mengarah pada _uncertainty node_, yaitu _event_ ketidakpastian yang menjadi hasil dari kegiatan memperoleh informasi. Setiap hasil yangn memungkinkan dari _event_ untuk memperoleh informasi ditambahkan _tree_ yang merepresestasikan _base project_. 
+3. Menghitung EVPI.
+4. Menghitung EVII, langkah ini memiliki beberapa turunan, yaitu:
+   a. Mengestimasi probabilitas _reliability (likelihood)_, *P(info __says__ | real world __is__ )*
+   b. Menghitung probabilitas _updated (posterior)_ 
+   c. Memasukkan _posterior_ pada _decision tree_ 
+   d. Menghitung nilai proyek
+5. Menghitung EVII dengan nilai probabilitas _reliability (likelihood)_ yang berbeda-beda. 
 
 ```{r fig.align = 'center', out.width = "45%", fig.cap = "_Decision Tree Analysis_"}
 knitr::include_graphics("images/decisionanalysis/voi.png")
@@ -105,7 +167,6 @@ knitr::include_graphics("images/decisionanalysis/bagan.png")
 ```
 
 Elemen-elemen tersebut direpresentasikan dalam sebagai hubungan dalam rantai keputusan akan hanya sekuat mata rantai yang paling lemah. Jika setiap elemen kuat, maka kualitas keputusan adalah tinggi. Jika salah satu elemen lemah, maka kualitas keputusan tidak lebih baik dari elemen yang lemah tersebut. Setiap elemen harus dipertimbangkan berdasarkan perspektif kepala dan hati karena keputusan harus masuk akal dan terasa benar. Setiap dari 6 elemen tersebut harus mencapai kualitas terbaiknya: _helpful frame_, _creative alternatives_, _useful information_, _clear values_, _sound reasoning_, dan _commitment to follow through_.
-
 
 ##### _1. Helpful Frame_ {#dq1}
 
@@ -168,7 +229,15 @@ Bagian ini menggerakkan keputusan ke tahap implementasi, yang mana tidak trivial
 - Apakah organisasi bisa mendukung keputusan tersebut?
 - Apakah sudah terdapat rencana implementasi?
 
-Pelaksanaan yang sukses membutuhkan suber daya, seperti waktu, usaha, uang, atau bantuan dari pihak lain. Selain itu pula juga membutuhkan kesiapan untuk mengatasi permasalahan.
+Pelaksanaan yang sukses membutuhkan sumber daya, seperti waktu, usaha, uang, atau bantuan dari pihak lain. Selain itu pula juga membutuhkan kesiapan untuk mengatasi permasalahan. Berikut ini adalah beberapa contoh pertanyaan yang ada dalam modul _Decision Quality_.
+
+```{r echo=FALSE, results='asis'}
+dq <- read.csv("pertanyaandq.csv", sep=";")
+library(knitr)
+kable(dq[1:35,])
+```
+
+Table: <span style="color: grey;"> Tabel 13.1: Pertanyaan-Pertanyaan dalam Modul Decision Quality </span>
 
 ## Pemetaan Ketidakpastian {#label18}
 ### Apa itu _Uncertainty_ {#label19}
@@ -186,7 +255,6 @@ knitr::include_graphics("images/decisionanalysis/dist.png")
 ## Tantangan Dalam Pengambilan Keputusan {#label24}
 ## Bias {#label25}
 ## _Encoding Probabilities_ {#label26}
-
 
 [bookdown](https://bookdown.org/yihui/bookdown/cross-references.html)
 
