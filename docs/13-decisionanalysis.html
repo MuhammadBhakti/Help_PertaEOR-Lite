@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Bab 14 Decision Tree Analysis | Technical Guide PertaEOR-Lite</title>
+  <meta name="description" content="Bab 14 Decision Tree Analysis | Technical Guide PertaEOR-Lite" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Bab 14 Decision Tree Analysis | Technical Guide PertaEOR-Lite" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/images/PertaEOR.png" />
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Bab 14 Decision Tree Analysis | Technical Guide PertaEOR-Lite" />
+  
+  
+  <meta name="twitter:image" content="/images/PertaEOR.png" />
+
+<meta name="author" content="PT LAPI ITB &amp; PERTAMINA INV" />
+
+
+<meta name="date" content="2021-10-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="12-chemicalhnp.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Help PertaEOR-Lite</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="00-screening.html"><a href="00-screening.html"><i class="fa fa-check"></i><b>1</b> Screening EOR</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="00-screening.html"><a href="00-screening.html#teori-dasar-statistik-distribusi-probabilitas-dan-metode-numerik"><i class="fa fa-check"></i><b>1.1</b> Teori Dasar Statistik, Distribusi Probabilitas, dan Metode Numerik</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="00-screening.html"><a href="00-screening.html#teori-dasar-statistik-dan-probabilitas"><i class="fa fa-check"></i><b>1.1.1</b> Teori Dasar Statistik dan Probabilitas</a></li>
+<li class="chapter" data-level="1.1.2" data-path="00-screening.html"><a href="00-screening.html#metode-numerik"><i class="fa fa-check"></i><b>1.1.2</b> Metode Numerik</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="00-screening.html"><a href="00-screening.html#metode-analisis-eor-screening"><i class="fa fa-check"></i><b>1.2</b> Metode Analisis EOR Screening</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="00-screening.html"><a href="00-screening.html#metode-analisis-eor-screening-untuk-input-data-single-value"><i class="fa fa-check"></i><b>1.2.1</b> Metode Analisis EOR Screening Untuk <em>Input</em> Data <em>Single-Value</em></a></li>
+<li class="chapter" data-level="1.2.2" data-path="00-screening.html"><a href="00-screening.html#metode-analisis-eor-screening-untuk-input-data-distribusi"><i class="fa fa-check"></i><b>1.2.2</b> Metode Analisis EOR <em>Screening</em> Untuk <em>Input</em> Data Distribusi</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="00-screening.html"><a href="00-screening.html#update-screening-eor"><i class="fa fa-check"></i><b>1.3</b> Update <em>Screening</em> EOR</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="00-screening.html"><a href="00-screening.html#update-database-screening-eor"><i class="fa fa-check"></i><b>1.3.1</b> Update <em>Database</em> <em>Screening</em> EOR</a></li>
+<li class="chapter" data-level="1.3.2" data-path="00-screening.html"><a href="00-screening.html#penambahan-parameter-pada-screening-eor"><i class="fa fa-check"></i><b>1.3.2</b> Penambahan Parameter pada <em>Screening</em> EOR</a></li>
+<li class="chapter" data-level="1.3.3" data-path="00-screening.html"><a href="00-screening.html#benchmark-eor-screening"><i class="fa fa-check"></i><b>1.3.3</b> <em>Benchmark</em> EOR <em>Screening</em></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="01-prophet.html"><a href="01-prophet.html"><i class="fa fa-check"></i><b>2</b> CO<sub>2</sub> Prophet Predictive Model</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="01-prophet.html"><a href="01-prophet.html#pendahuluan"><i class="fa fa-check"></i><b>2.1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="2.2" data-path="01-prophet.html"><a href="01-prophet.html#asumsi-yang-digunakan-dalam-model"><i class="fa fa-check"></i><b>2.2</b> Asumsi yang Digunakan Dalam Model</a></li>
+<li class="chapter" data-level="2.3" data-path="01-prophet.html"><a href="01-prophet.html#parameter-parameter-penting-yang-digunakan-dalam-model"><i class="fa fa-check"></i><b>2.3</b> Parameter-Parameter Penting yang Digunakan Dalam Model</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="01-prophet.html"><a href="01-prophet.html#koefisien-permeabilitas-dykstra-parsons"><i class="fa fa-check"></i><b>2.3.1</b> Koefisien Permeabilitas Dykstra-Parsons</a></li>
+<li class="chapter" data-level="2.3.2" data-path="01-prophet.html"><a href="01-prophet.html#temperatur-reservoir"><i class="fa fa-check"></i><b>2.3.2</b> Temperatur Reservoir</a></li>
+<li class="chapter" data-level="2.3.3" data-path="01-prophet.html"><a href="01-prophet.html#tekanan-rata-rata-reservoir-average-reservoir-pressure"><i class="fa fa-check"></i><b>2.3.3</b> Tekanan Rata-Rata Reservoir (<em>Average Reservoir Pressure</em>)</a></li>
+<li class="chapter" data-level="2.3.4" data-path="01-prophet.html"><a href="01-prophet.html#minimum-miscibility-pressure-mmp"><i class="fa fa-check"></i><b>2.3.4</b> <em>Minimum Miscibility Pressure (MMP)</em></a></li>
+<li class="chapter" data-level="2.3.5" data-path="01-prophet.html"><a href="01-prophet.html#viskositas-minyak-mu_o"><i class="fa fa-check"></i><b>2.3.5</b> Viskositas Minyak (<span class="math inline">\(\mu_o\)</span>)</a></li>
+<li class="chapter" data-level="2.3.6" data-path="01-prophet.html"><a href="01-prophet.html#viskositas-air-mu_w"><i class="fa fa-check"></i><b>2.3.6</b> Viskositas Air (<span class="math inline">\(\mu_w\)</span>)</a></li>
+<li class="chapter" data-level="2.3.7" data-path="01-prophet.html"><a href="01-prophet.html#faktor-volume-formasi-minyak-bo"><i class="fa fa-check"></i><b>2.3.7</b> Faktor Volume Formasi Minyak (B<sub><em>o</em></sub>)</a></li>
+<li class="chapter" data-level="2.3.8" data-path="01-prophet.html"><a href="01-prophet.html#solution-gas-oil-ratio-rs"><i class="fa fa-check"></i><b>2.3.8</b> <em>Solution Gas-Oil Ratio</em> (R<sub><em>s</em></sub>)</a></li>
+<li class="chapter" data-level="2.3.9" data-path="01-prophet.html"><a href="01-prophet.html#permeabilitas-relatif-kr"><i class="fa fa-check"></i><b>2.3.9</b> Permeabilitas Relatif (k<sub><em>r</em></sub>)</a></li>
+<li class="chapter" data-level="2.3.10" data-path="01-prophet.html"><a href="01-prophet.html#waterco2-injection-ratio"><i class="fa fa-check"></i><b>2.3.10</b> <em>Water/CO<sub>2</sub> Injection Ratio</em></a></li>
+<li class="chapter" data-level="2.3.11" data-path="01-prophet.html"><a href="01-prophet.html#mixing-parameter-omega"><i class="fa fa-check"></i><b>2.3.11</b> <em>Mixing Parameter (<span class="math inline">\(\omega\)</span>)</em></a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="01-prophet.html"><a href="01-prophet.html#tiga-kondisi-aliran-fluida"><i class="fa fa-check"></i><b>2.4</b> Tiga Kondisi Aliran Fluida</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="01-prophet.html"><a href="01-prophet.html#immiscible-flow"><i class="fa fa-check"></i><b>2.4.1</b> <em>Immiscible Flow</em></a></li>
+<li class="chapter" data-level="2.4.2" data-path="01-prophet.html"><a href="01-prophet.html#miscible-flow"><i class="fa fa-check"></i><b>2.4.2</b> <em>Miscible Flow</em></a></li>
+<li class="chapter" data-level="2.4.3" data-path="01-prophet.html"><a href="01-prophet.html#partially-miscible-flow"><i class="fa fa-check"></i><b>2.4.3</b> <em>Partially Miscible Flow</em></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="01-prophet.html"><a href="01-prophet.html#hasil-perhitungan-dan-tampilan-perangkat-lunak"><i class="fa fa-check"></i><b>2.5</b> Hasil Perhitungan dan Tampilan Perangkat Lunak</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="02-waterflood.html"><a href="02-waterflood.html"><i class="fa fa-check"></i><b>3</b> Waterflood Predictive Model</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="02-waterflood.html"><a href="02-waterflood.html#pendahuluan-1"><i class="fa fa-check"></i><b>3.1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="3.2" data-path="02-waterflood.html"><a href="02-waterflood.html#teori-frontal-displacement-untuk-waterflooding"><i class="fa fa-check"></i><b>3.2</b> Teori <em>Frontal Displacement</em> Untuk <em>Waterflooding</em></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="02-waterflood.html"><a href="02-waterflood.html#teori-fractional-flow-untuk-waterflooding"><i class="fa fa-check"></i><b>3.2.1</b> Teori <em>Fractional Flow</em> Untuk <em>Waterflooding</em></a></li>
+<li class="chapter" data-level="3.2.2" data-path="02-waterflood.html"><a href="02-waterflood.html#teori-frontal-advance-untuk-waterflooding"><i class="fa fa-check"></i><b>3.2.2</b> Teori <em>Frontal Advance</em> Untuk <em>Waterflooding</em></a></li>
+<li class="chapter" data-level="3.2.3" data-path="02-waterflood.html"><a href="02-waterflood.html#penentuan-parameter-left-fracpartial-f_wpartial-s_w-right_s_w-dan-saturasi-air-rata-rata-reservoir-bar-s_w"><i class="fa fa-check"></i><b>3.2.3</b> Penentuan parameter <span class="math inline">\(\left( \frac{\partial f_w}{\partial S_w} \right)_{S_w}\)</span> dan Saturasi Air Rata-Rata Reservoir (<span class="math inline">\(\bar S_w\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="02-waterflood.html"><a href="02-waterflood.html#penentuan-parameter-efisiensi-waterflooding"><i class="fa fa-check"></i><b>3.3</b> Penentuan Parameter Efisiensi <em>Waterflooding</em></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="02-waterflood.html"><a href="02-waterflood.html#displacement-efficiency-ed"><i class="fa fa-check"></i><b>3.3.1</b> <em>Displacement Efficiency</em> (E<sub>D</sub>)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="02-waterflood.html"><a href="02-waterflood.html#areal-sweep-efficiency-ea"><i class="fa fa-check"></i><b>3.3.2</b> <em>Areal Sweep Efficiency</em> (E<sub>A</sub>)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="02-waterflood.html"><a href="02-waterflood.html#vertical-sweep-efficiency-ev"><i class="fa fa-check"></i><b>3.3.3</b> <em>Vertical Sweep Efficiency</em> (E<sub>V</sub>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="02-waterflood.html"><a href="02-waterflood.html#persamaan-persamaan-yang-digunakan-dalam-prediksi-performa-waterflooding"><i class="fa fa-check"></i><b>3.4</b> Persamaan-Persamaan yang Digunakan Dalam Prediksi Performa <em>Waterflooding</em></a></li>
+<li class="chapter" data-level="3.5" data-path="02-waterflood.html"><a href="02-waterflood.html#persamaan-persamaan-dasar-dan-nilai-default-yang-digunakan-dalam-predictive-model"><i class="fa fa-check"></i><b>3.5</b> Persamaan-Persamaan Dasar dan Nilai <em>Default</em> yang Digunakan Dalam <em>Predictive Model</em></a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="02-waterflood.html"><a href="02-waterflood.html#viskositas-minyak"><i class="fa fa-check"></i><b>3.5.1</b> Viskositas Minyak</a></li>
+<li class="chapter" data-level="3.5.2" data-path="02-waterflood.html"><a href="02-waterflood.html#solution-gas-oil-ratio"><i class="fa fa-check"></i><b>3.5.2</b> <em>SolUtion Gas-Oil Ratio</em></a></li>
+<li class="chapter" data-level="3.5.3" data-path="02-waterflood.html"><a href="02-waterflood.html#faktor-volume-formasi-minyak"><i class="fa fa-check"></i><b>3.5.3</b> Faktor Volume Formasi Minyak</a></li>
+<li class="chapter" data-level="3.5.4" data-path="02-waterflood.html"><a href="02-waterflood.html#permeabilitas-relatif"><i class="fa fa-check"></i><b>3.5.4</b> Permeabilitas Relatif</a></li>
+<li class="chapter" data-level="3.5.5" data-path="02-waterflood.html"><a href="02-waterflood.html#nilai-default-parameter-yang-digunakan-dalam-model"><i class="fa fa-check"></i><b>3.5.5</b> Nilai <em>Default</em> Parameter yang Digunakan Dalam Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="03-chemical.html"><a href="03-chemical.html"><i class="fa fa-check"></i><b>4</b> Chemical Flood Predictive Model</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="03-chemical.html"><a href="03-chemical.html#pendahuluan-2"><i class="fa fa-check"></i><b>4.1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="4.2" data-path="03-chemical.html"><a href="03-chemical.html#tinjauan-sifat-fisis-dan-mekanisme-kerja-dari-surfaktan-dan-alkali"><i class="fa fa-check"></i><b>4.2</b> Tinjauan Sifat Fisis dan Mekanisme Kerja Dari Surfaktan dan Alkali</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="03-chemical.html"><a href="03-chemical.html#sifat-fisis-dan-mekanisme-kerja-surfaktan"><i class="fa fa-check"></i><b>4.2.1</b> Sifat Fisis dan Mekanisme Kerja Surfaktan</a></li>
+<li class="chapter" data-level="4.2.2" data-path="03-chemical.html"><a href="03-chemical.html#sifat-fisis-dan-mekanisme-kerja-alkali"><i class="fa fa-check"></i><b>4.2.2</b> Sifat Fisis dan Mekanisme Kerja Alkali</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="03-chemical.html"><a href="03-chemical.html#mekanisme-proses-injeksi-kimia"><i class="fa fa-check"></i><b>4.3</b> Mekanisme Proses Injeksi Kimia</a></li>
+<li class="chapter" data-level="4.4" data-path="03-chemical.html"><a href="03-chemical.html#asumsi-dan-batasan-dalam-predictive-model"><i class="fa fa-check"></i><b>4.4</b> Asumsi dan Batasan Dalam <em>Predictive Model</em></a></li>
+<li class="chapter" data-level="4.5" data-path="03-chemical.html"><a href="03-chemical.html#konsep-dan-algoritma-yang-digunakan-dalam-predictive-model"><i class="fa fa-check"></i><b>4.5</b> Konsep dan Algoritma yang Digunakan Dalam <em>Predictive Model</em></a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="03-chemical.html"><a href="03-chemical.html#perhitungan-target-oil"><i class="fa fa-check"></i><b>4.5.1</b> Perhitungan <em>Target Oil</em></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="03-chemical.html"><a href="03-chemical.html#laju-alir-dan-bilangan-kapiler"><i class="fa fa-check"></i><b>4.6</b> Laju Alir dan Bilangan Kapiler</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="03-chemical.html"><a href="03-chemical.html#surfactant-retention-pada-batuan-sandstone"><i class="fa fa-check"></i><b>4.6.1</b> <em>Surfactant Retention</em> Pada Batuan <em>Sandstone</em></a></li>
+<li class="chapter" data-level="4.6.2" data-path="03-chemical.html"><a href="03-chemical.html#perhitungan-oil-recovery"><i class="fa fa-check"></i><b>4.6.2</b> Perhitungan <em>Oil Recovery</em></a></li>
+<li class="chapter" data-level="4.6.3" data-path="03-chemical.html"><a href="03-chemical.html#karakteristik-produksi-minyak-dan-koreksi-terhadap-crossflow"><i class="fa fa-check"></i><b>4.6.3</b> Karakteristik Produksi Minyak dan Koreksi Terhadap <em>Crossflow</em></a></li>
+<li class="chapter" data-level="4.6.4" data-path="03-chemical.html"><a href="03-chemical.html#karakteristik-injeksi-kimia"><i class="fa fa-check"></i><b>4.6.4</b> Karakteristik Injeksi Kimia</a></li>
+<li class="chapter" data-level="4.6.5" data-path="03-chemical.html"><a href="03-chemical.html#modifikasi-predictive-model-untuk-caustic-dan-caustic-polymer-flood"><i class="fa fa-check"></i><b>4.6.5</b> Modifikasi <em>Predictive Model</em> Untuk <em>Caustic</em> dan <em>Caustic-Polymer Flood</em></a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="03-chemical.html"><a href="03-chemical.html#persamaan-persamaan-dasar-dan-nilai-default-yang-digunakan-dalam-model"><i class="fa fa-check"></i><b>4.7</b> Persamaan-Persamaan Dasar dan Nilai <em>Default</em> yang Digunakan Dalam Model</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="03-chemical.html"><a href="03-chemical.html#viskositas-minyak-1"><i class="fa fa-check"></i><b>4.7.1</b> Viskositas Minyak</a></li>
+<li class="chapter" data-level="4.7.2" data-path="03-chemical.html"><a href="03-chemical.html#solution-gas-oil-ratio-1"><i class="fa fa-check"></i><b>4.7.2</b> <em>Solution Gas-Oil Ratio</em></a></li>
+<li class="chapter" data-level="4.7.3" data-path="03-chemical.html"><a href="03-chemical.html#faktor-volume-formasi-minyak-1"><i class="fa fa-check"></i><b>4.7.3</b> Faktor Volume Formasi Minyak</a></li>
+<li class="chapter" data-level="4.7.4" data-path="03-chemical.html"><a href="03-chemical.html#permeabilitas-relatif-dan-fraksi-aliran-air"><i class="fa fa-check"></i><b>4.7.4</b> Permeabilitas Relatif dan Fraksi Aliran Air</a></li>
+<li class="chapter" data-level="4.7.5" data-path="03-chemical.html"><a href="03-chemical.html#nilai-default-yang-dignakan-dalam-predictive-model"><i class="fa fa-check"></i><b>4.7.5</b> Nilai <em>Default</em> yang Dignakan Dalam <em>Predictive Model</em></a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="03-chemical.html"><a href="03-chemical.html#penambahan-jenis-pattern-pada-injeksi-kimia"><i class="fa fa-check"></i><b>4.8</b> Penambahan Jenis <em>Pattern</em> pada Injeksi Kimia</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="03-chemical.html"><a href="03-chemical.html#injeksi-kimia"><i class="fa fa-check"></i><b>4.8.1</b> Injeksi Kimia</a></li>
+<li class="chapter" data-level="4.8.2" data-path="03-chemical.html"><a href="03-chemical.html#penentuan-pola-sumur-injeksi"><i class="fa fa-check"></i><b>4.8.2</b> Penentuan Pola Sumur Injeksi</a></li>
+<li class="chapter" data-level="4.8.3" data-path="03-chemical.html"><a href="03-chemical.html#sejarah-injeksi-kimia"><i class="fa fa-check"></i><b>4.8.3</b> Sejarah Injeksi Kimia</a></li>
+<li class="chapter" data-level="4.8.4" data-path="03-chemical.html"><a href="03-chemical.html#derivasi-persamaan-model-pattern-injeksi-kimia"><i class="fa fa-check"></i><b>4.8.4</b> Derivasi Persamaan Model <em>Pattern</em> Injeksi Kimia</a></li>
+<li class="chapter" data-level="4.8.5" data-path="03-chemical.html"><a href="03-chemical.html#simulasi-sintetik-injeksi-kimia"><i class="fa fa-check"></i><b>4.8.5</b> Simulasi Sintetik Injeksi Kimia</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="04-polymer.html"><a href="04-polymer.html"><i class="fa fa-check"></i><b>5</b> Polymer Predictive Model</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="04-polymer.html"><a href="04-polymer.html#pendahuluan-3"><i class="fa fa-check"></i><b>5.1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="5.2" data-path="04-polymer.html"><a href="04-polymer.html#teori-fractional-flow"><i class="fa fa-check"></i><b>5.2</b> Teori <em>Fractional Flow</em></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="04-polymer.html"><a href="04-polymer.html#penentuan-nilai-saturasi-air-rata-rata-di-reservoir-selama-periode-injeksi-polimer"><i class="fa fa-check"></i><b>5.2.1</b> Penentuan Nilai Saturasi Air Rata-Rata di Reservoir Selama Periode Injeksi Polimer</a></li>
+<li class="chapter" data-level="5.2.2" data-path="04-polymer.html"><a href="04-polymer.html#rangkuman-persamaan-persamaan-yang-digunakan-dalam-teori-fractional-flow"><i class="fa fa-check"></i><b>5.2.2</b> Rangkuman Persamaan-Persamaan yang Digunakan Dalam Teori <em>Fractional Flow</em></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="04-polymer.html"><a href="04-polymer.html#metode-perhitungan-areal-dan-vertical-sweep-efficiency-menggunakan-pendekatan-streamtube"><i class="fa fa-check"></i><b>5.3</b> Metode Perhitungan <em>Areal</em> dan <em>Vertical Sweep Efficiency</em> Menggunakan Pendekatan <em>Streamtube</em></a></li>
+<li class="chapter" data-level="5.4" data-path="04-polymer.html"><a href="04-polymer.html#perhitungan-injectivity"><i class="fa fa-check"></i><b>5.4</b> Perhitungan <em>Injectivity</em></a></li>
+<li class="chapter" data-level="5.5" data-path="04-polymer.html"><a href="04-polymer.html#penentuan-nilai-permeabilitas-di-setiap-lapisan-reservoir"><i class="fa fa-check"></i><b>5.5</b> Penentuan Nilai Permeabilitas di Setiap Lapisan Reservoir</a></li>
+<li class="chapter" data-level="5.6" data-path="04-polymer.html"><a href="04-polymer.html#koreksi-terhadap-pengaruh-slug-polimer"><i class="fa fa-check"></i><b>5.6</b> Koreksi Terhadap Pengaruh <em>Slug</em> Polimer</a></li>
+<li class="chapter" data-level="5.7" data-path="04-polymer.html"><a href="04-polymer.html#pengaruh-sifat-fisis-larutan-polimer-terhadap-performa-injeksi-polimer"><i class="fa fa-check"></i><b>5.7</b> Pengaruh Sifat Fisis Larutan Polimer Terhadap Performa Injeksi Polimer</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="04-polymer.html"><a href="04-polymer.html#efek-pengurangan-permeabilitas-untuk-fasa-aqueous"><i class="fa fa-check"></i><b>5.7.1</b> Efek Pengurangan Permeabilitas Untuk Fasa <em>Aqueous</em></a></li>
+<li class="chapter" data-level="5.7.2" data-path="04-polymer.html"><a href="04-polymer.html#efek-aliran-non-newtonian-larutan-polimer-di-daerah-sekitar-sumur-injeksi"><i class="fa fa-check"></i><b>5.7.2</b> Efek Aliran <em>Non-Newtonian</em> Larutan Polimer di Daerah Sekitar Sumur Injeksi</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="04-polymer.html"><a href="04-polymer.html#persamaan-persamaan-dasar-yang-digunakan-dalam-predictive-model"><i class="fa fa-check"></i><b>5.8</b> Persamaan-Persamaan Dasar yang Digunakan Dalam <em>Predictive Model</em></a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="04-polymer.html"><a href="04-polymer.html#viskositas-minyak-2"><i class="fa fa-check"></i><b>5.8.1</b> Viskositas Minyak</a></li>
+<li class="chapter" data-level="5.8.2" data-path="04-polymer.html"><a href="04-polymer.html#solution-gas-oil-ratio-2"><i class="fa fa-check"></i><b>5.8.2</b> <em>Solution Gas-Oil Ratio</em></a></li>
+<li class="chapter" data-level="5.8.3" data-path="04-polymer.html"><a href="04-polymer.html#faktor-volume-formasi-minyak-2"><i class="fa fa-check"></i><b>5.8.3</b> Faktor Volume Formasi Minyak</a></li>
+<li class="chapter" data-level="5.8.4" data-path="04-polymer.html"><a href="04-polymer.html#faktor-volume-formasi-air"><i class="fa fa-check"></i><b>5.8.4</b> Faktor Volume Formasi Air</a></li>
+<li class="chapter" data-level="5.8.5" data-path="04-polymer.html"><a href="04-polymer.html#permeabilitas-relatf-dan-fraksi-aliran-air"><i class="fa fa-check"></i><b>5.8.5</b> Permeabilitas Relatf dan Fraksi Aliran Air</a></li>
+<li class="chapter" data-level="5.8.6" data-path="04-polymer.html"><a href="04-polymer.html#persamaan-persamaan-dasar-dan-nilai-default-yang-digunakan"><i class="fa fa-check"></i><b>5.8.6</b> Persamaan-Persamaan Dasar dan Nilai <em>Default</em> yang Digunakan</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="05-co2miscible.html"><a href="05-co2miscible.html"><i class="fa fa-check"></i><b>6</b> CO<sub>2</sub> Miscible Predictive Model</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="05-co2miscible.html"><a href="05-co2miscible.html#pendahuluan-4"><i class="fa fa-check"></i><b>6.1</b> Pendahuluan</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="05-co2miscible.html"><a href="05-co2miscible.html#kondisi-pvt"><i class="fa fa-check"></i><b>6.1.1</b> Kondisi PVT</a></li>
+<li class="chapter" data-level="6.1.2" data-path="05-co2miscible.html"><a href="05-co2miscible.html#wettability"><i class="fa fa-check"></i><b>6.1.2</b> Wettability</a></li>
+<li class="chapter" data-level="6.1.3" data-path="05-co2miscible.html"><a href="05-co2miscible.html#keuntungan-dan-kerugian-melakukan-injeksi-co2"><i class="fa fa-check"></i><b>6.1.3</b> Keuntungan dan Kerugian Melakukan Injeksi CO<sub>2</sub></a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="05-co2miscible.html"><a href="05-co2miscible.html#miscible-co2-predictive-model"><i class="fa fa-check"></i><b>6.2</b> <em>Miscible CO<sub>2</sub> Predictive Model</em></a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="05-co2miscible.html"><a href="05-co2miscible.html#sifat-sifat-fisik-fluida"><i class="fa fa-check"></i><b>6.2.1</b> Sifat-Sifat Fisik Fluida</a></li>
+<li class="chapter" data-level="6.2.2" data-path="05-co2miscible.html"><a href="05-co2miscible.html#fractional-flow-model"><i class="fa fa-check"></i><b>6.2.2</b> <em>Fractional Flow</em> Model</a></li>
+<li class="chapter" data-level="6.2.3" data-path="05-co2miscible.html"><a href="05-co2miscible.html#parameter-parameter-performa-miscible-co2"><i class="fa fa-check"></i><b>6.2.3</b> Parameter-Parameter Performa <em>Miscible</em> CO<sub>2</sub></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="06-co2immiscible.html"><a href="06-co2immiscible.html"><i class="fa fa-check"></i><b>7</b> CO<sub>2</sub> Immiscible Predictive Model</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="06-co2immiscible.html"><a href="06-co2immiscible.html#pendahuluan-5"><i class="fa fa-check"></i><b>7.1</b> Pendahuluan</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="06-co2immiscible.html"><a href="06-co2immiscible.html#mekanisme-pendesakan-secara-immiscible"><i class="fa fa-check"></i><b>7.1.1</b> Mekanisme Pendesakan Secara <em>Immiscible</em></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="06-co2immiscible.html"><a href="06-co2immiscible.html#immiscible-co2-predictive-model"><i class="fa fa-check"></i><b>7.2</b> <em>Immiscible</em> CO<sub>2</sub> <em>Predictive Model</em></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="06-co2immiscible.html"><a href="06-co2immiscible.html#sifat-sifat-fisik-fluida-1"><i class="fa fa-check"></i><b>7.2.1</b> Sifat-Sifat Fisik Fluida</a></li>
+<li class="chapter" data-level="7.2.2" data-path="06-co2immiscible.html"><a href="06-co2immiscible.html#fractional-flow-model-1"><i class="fa fa-check"></i><b>7.2.2</b> <em>Fractional Flow Model</em></a></li>
+<li class="chapter" data-level="7.2.3" data-path="06-co2immiscible.html"><a href="06-co2immiscible.html#material-balance-equation"><i class="fa fa-check"></i><b>7.2.3</b> <em>Material Balance Equation</em></a></li>
+<li class="chapter" data-level="7.2.4" data-path="06-co2immiscible.html"><a href="06-co2immiscible.html#parameter-parameter-performa-immiscible-co2"><i class="fa fa-check"></i><b>7.2.4</b> Parameter-Parameter Performa <em>Immiscible</em> CO<sub>2</sub></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="07-steam.html"><a href="07-steam.html"><i class="fa fa-check"></i><b>8</b> Steamflood Predictive Model</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="07-steam.html"><a href="07-steam.html#pendahuluan-6"><i class="fa fa-check"></i><b>8.1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="8.2" data-path="07-steam.html"><a href="07-steam.html#fenomena-heat-loss"><i class="fa fa-check"></i><b>8.2</b> Fenomena <em>Heat Loss</em></a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="07-steam.html"><a href="07-steam.html#fenomena-heat-loss-di-pipa-permukaan"><i class="fa fa-check"></i><b>8.2.1</b> Fenomena <em>Heat Loss</em> di Pipa Permukaan</a></li>
+<li class="chapter" data-level="8.2.2" data-path="07-steam.html"><a href="07-steam.html#fenomena-heat-loss-di-sumur-injeksi"><i class="fa fa-check"></i><b>8.2.2</b> Fenomena <em>Heat Loss</em> di Sumur Injeksi</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="07-steam.html"><a href="07-steam.html#perhitungan-sejumlah-parameter-penting-yang-digunakan-dalam-predictive-model"><i class="fa fa-check"></i><b>8.3</b> Perhitungan Sejumlah Parameter Penting yang Digunakan Dalam <em>Predictive Model</em></a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="07-steam.html"><a href="07-steam.html#permeabilitas-relatif-tiga-fasa"><i class="fa fa-check"></i><b>8.3.1</b> Permeabilitas Relatif Tiga Fasa</a></li>
+<li class="chapter" data-level="8.3.2" data-path="07-steam.html"><a href="07-steam.html#pembagian-daerah-reservoir"><i class="fa fa-check"></i><b>8.3.2</b> Pembagian Daerah Reservoir</a></li>
+<li class="chapter" data-level="8.3.3" data-path="07-steam.html"><a href="07-steam.html#initial-injectivity-index"><i class="fa fa-check"></i><b>8.3.3</b> <em>Initial Injectivity Index</em></a></li>
+<li class="chapter" data-level="8.3.4" data-path="07-steam.html"><a href="07-steam.html#viskositas-fluida"><i class="fa fa-check"></i><b>8.3.4</b> Viskositas Fluida</a></li>
+<li class="chapter" data-level="8.3.5" data-path="07-steam.html"><a href="07-steam.html#solution-gas-oil-ratio-4"><i class="fa fa-check"></i><b>8.3.5</b> <em>Solution Gas-Oil Ratio</em></a></li>
+<li class="chapter" data-level="8.3.6" data-path="07-steam.html"><a href="07-steam.html#faktor-volume-formasi-minyak-4"><i class="fa fa-check"></i><b>8.3.6</b> Faktor Volume Formasi Minyak</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="07-steam.html"><a href="07-steam.html#steamflood-predictive-model-1"><i class="fa fa-check"></i><b>8.4</b> <em>Steamflood Predictive Model</em></a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="07-steam.html"><a href="07-steam.html#metode-williams-metode-stanford-university"><i class="fa fa-check"></i><b>8.4.1</b> Metode Williams (Metode Stanford University)</a></li>
+<li class="chapter" data-level="8.4.2" data-path="07-steam.html"><a href="07-steam.html#metode-jones"><i class="fa fa-check"></i><b>8.4.2</b> Metode Jones</a></li>
+<li class="chapter" data-level="8.4.3" data-path="07-steam.html"><a href="07-steam.html#model-gomaa"><i class="fa fa-check"></i><b>8.4.3</b> Model Gomaa</a></li>
+<li class="chapter" data-level="8.4.4" data-path="07-steam.html"><a href="07-steam.html#model-aydelotte-pope-model-intercomp"><i class="fa fa-check"></i><b>8.4.4</b> Model Aydelotte-Pope (Model Intercomp)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="08-insitu.html"><a href="08-insitu.html"><i class="fa fa-check"></i><b>9</b> In-Situ Combustion Predictive Model</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="08-insitu.html"><a href="08-insitu.html#pendahuluan-7"><i class="fa fa-check"></i><b>9.1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="9.2" data-path="08-insitu.html"><a href="08-insitu.html#in-situ-combustion-predictive-model-1"><i class="fa fa-check"></i><b>9.2</b> <em>In-Situ Combustion Predictive Model</em></a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="08-insitu.html"><a href="08-insitu.html#model-brigham-et-al-untuk-dry-in-situ-combustion"><i class="fa fa-check"></i><b>9.2.1</b> Model Brigham, et al Untuk <em>Dry In-Situ Combustion</em></a></li>
+<li class="chapter" data-level="9.2.2" data-path="08-insitu.html"><a href="08-insitu.html#perhitungan-parameter-parameter-penting-ynag-dgunakan-dalam-model"><i class="fa fa-check"></i><b>9.2.2</b> Perhitungan Parameter-Parameter Penting ynag Dgunakan Dalam Model</a></li>
+<li class="chapter" data-level="9.2.3" data-path="08-insitu.html"><a href="08-insitu.html#viskositas-minyak-4"><i class="fa fa-check"></i><b>9.2.3</b> Viskositas Minyak</a></li>
+<li class="chapter" data-level="9.2.4" data-path="08-insitu.html"><a href="08-insitu.html#parameter-parameter-performa-in-situ-combustion"><i class="fa fa-check"></i><b>9.2.4</b> Parameter-Parameter Performa <em>In-Situ Combustion</em></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="09-infill.html"><a href="09-infill.html"><i class="fa fa-check"></i><b>10</b> Infill Drilling Predictive Model</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="09-infill.html"><a href="09-infill.html#pendahuluan-8"><i class="fa fa-check"></i><b>10.1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="10.2" data-path="09-infill.html"><a href="09-infill.html#asumsi-yang-digunakan-dalam-predictive-model"><i class="fa fa-check"></i><b>10.2</b> Asumsi yang Digunakan Dalam <em>Predictive Model</em></a></li>
+<li class="chapter" data-level="10.3" data-path="09-infill.html"><a href="09-infill.html#analisis-streamtube"><i class="fa fa-check"></i><b>10.3</b> Analisis <em>Streamtube</em></a></li>
+<li class="chapter" data-level="10.4" data-path="09-infill.html"><a href="09-infill.html#pemodelan-continuity-reservoir"><i class="fa fa-check"></i><b>10.4</b> Pemodelan <em>Continuity</em> Reservoir</a></li>
+<li class="chapter" data-level="10.5" data-path="09-infill.html"><a href="09-infill.html#persamaan-persamaan-dasar-dan-nilai-default-yang-digunakan-dalam-predcitive-model"><i class="fa fa-check"></i><b>10.5</b> Persamaan-Persamaan Dasar dan Nilai <em>Default</em> yang Digunakan Dalam <em>Predcitive Model</em></a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="09-infill.html"><a href="09-infill.html#viskositas-minyak-5"><i class="fa fa-check"></i><b>10.5.1</b> Viskositas Minyak</a></li>
+<li class="chapter" data-level="10.5.2" data-path="09-infill.html"><a href="09-infill.html#solution-gas-oil-ratio-5"><i class="fa fa-check"></i><b>10.5.2</b> <em>Solution Gas-Oil Ratio</em></a></li>
+<li class="chapter" data-level="10.5.3" data-path="09-infill.html"><a href="09-infill.html#faktor-volume-formasi-minyak-6"><i class="fa fa-check"></i><b>10.5.3</b> Faktor Volume Formasi Minyak</a></li>
+<li class="chapter" data-level="10.5.4" data-path="09-infill.html"><a href="09-infill.html#permeabilitas-relatif-1"><i class="fa fa-check"></i><b>10.5.4</b> Permeabilitas Relatif</a></li>
+<li class="chapter" data-level="10.5.5" data-path="09-infill.html"><a href="09-infill.html#nilai-default-yang-digunakan-dalam-predictive-model"><i class="fa fa-check"></i><b>10.5.5</b> Nilai <em>Default</em> yang Digunakan Dalam <em>Predictive Model</em></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="10-hc.html"><a href="10-hc.html"><i class="fa fa-check"></i><b>11</b> Hydrocarbon Gas Injection Predictive Model</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="10-hc.html"><a href="10-hc.html#pendahuluan-9"><i class="fa fa-check"></i><b>11.1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="11.2" data-path="10-hc.html"><a href="10-hc.html#mekanisme-injeksi-hidrokarbon"><i class="fa fa-check"></i><b>11.2</b> Mekanisme Injeksi Hidrokarbon</a></li>
+<li class="chapter" data-level="11.3" data-path="10-hc.html"><a href="10-hc.html#pembuatan-predictive-model"><i class="fa fa-check"></i><b>11.3</b> Pembuatan <em>Predictive Model</em></a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="11-co2hnp.html"><a href="11-co2hnp.html"><i class="fa fa-check"></i><b>12</b> CO<sub>2</sub> Huff &amp; Puff Predictive Model</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="11-co2hnp.html"><a href="11-co2hnp.html#pendahuluan-10"><i class="fa fa-check"></i><b>12.1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="12.2" data-path="11-co2hnp.html"><a href="11-co2hnp.html#pembutan-predictive-model"><i class="fa fa-check"></i><b>12.2</b> Pembutan <em>Predictive Model</em></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="12-chemicalhnp.html"><a href="12-chemicalhnp.html"><i class="fa fa-check"></i><b>13</b> Chemical Injection Huff &amp; Puff Predictive Model</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="12-chemicalhnp.html"><a href="12-chemicalhnp.html#pendahuluan-11"><i class="fa fa-check"></i><b>13.1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="13.2" data-path="12-chemicalhnp.html"><a href="12-chemicalhnp.html#mekanisme-injeksi-chemical-huff-and-puff"><i class="fa fa-check"></i><b>13.2</b> Mekanisme Injeksi <em>Chemical Huff and Puff</em></a></li>
+<li class="chapter" data-level="13.3" data-path="12-chemicalhnp.html"><a href="12-chemicalhnp.html#pembuatan-model-prediktif"><i class="fa fa-check"></i><b>13.3</b> Pembuatan Model Prediktif</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html"><i class="fa fa-check"></i><b>14</b> <em>Decision Tree Analysis</em></a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label1"><i class="fa fa-check"></i><b>14.1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="14.2" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label2"><i class="fa fa-check"></i><b>14.2</b> Stuktur Analisis Pohon Keputusan <em>(Decision Tree Analysis)</em></a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label3"><i class="fa fa-check"></i><b>14.2.1</b> Elemen Analisis Pohon Keputusan</a></li>
+<li class="chapter" data-level="14.2.2" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label9"><i class="fa fa-check"></i><b>14.2.2</b> Notasi Baku Analisis Pohon Keputusan</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label10"><i class="fa fa-check"></i><b>14.3</b> Alur Kerja Pengambilan Keputusan</a></li>
+<li class="chapter" data-level="14.4" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label11"><i class="fa fa-check"></i><b>14.4</b> <em>Decision Tree Analysis Workflow</em></a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label12"><i class="fa fa-check"></i><b>14.4.1</b> <em>Framing The Problem</em></a></li>
+<li class="chapter" data-level="14.4.2" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label13"><i class="fa fa-check"></i><b>14.4.2</b> <em>Deterministic Analysis</em></a></li>
+<li class="chapter" data-level="14.4.3" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label14"><i class="fa fa-check"></i><b>14.4.3</b> <em>Probabilistic Analysis</em></a></li>
+<li class="chapter" data-level="14.4.4" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label15"><i class="fa fa-check"></i><b>14.4.4</b> <em>Appraisal</em></a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label18"><i class="fa fa-check"></i><b>14.5</b> Pemetaan Ketidakpastian</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label19"><i class="fa fa-check"></i><b>14.5.1</b> Apa itu <em>Uncertainty</em></a></li>
+<li class="chapter" data-level="14.5.2" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label20"><i class="fa fa-check"></i><b>14.5.2</b> <em>Uncertainty &amp; Probability</em></a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label21"><i class="fa fa-check"></i><b>14.6</b> Menciptakan Nilai dari Sebuah Ketidakpastian</a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label22"><i class="fa fa-check"></i><b>14.6.1</b> <em>Value of Information</em></a></li>
+<li class="chapter" data-level="14.6.2" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label23"><i class="fa fa-check"></i><b>14.6.2</b> <em>Value of Flexibility</em></a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label24"><i class="fa fa-check"></i><b>14.7</b> Tantangan Dalam Pengambilan Keputusan</a></li>
+<li class="chapter" data-level="14.8" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label25"><i class="fa fa-check"></i><b>14.8</b> Bias</a></li>
+<li class="chapter" data-level="14.9" data-path="13-decisionanalysis.html"><a href="13-decisionanalysis.html#label26"><i class="fa fa-check"></i><b>14.9</b> <em>Encoding Probabilities</em></a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Technical Guide PertaEOR-Lite</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="decision-tree-analysis" class="section level1" number="14">
+<h1><span class="header-section-number">Bab 14</span> <em>Decision Tree Analysis</em></h1>
+<div id="label1" class="section level2" number="14.1">
+<h2><span class="header-section-number">14.1</span> Pendahuluan</h2>
+<p>Analisis keputusan atau <em>Decision Analysis</em>(DA) secara sederhana didefinisikan sebagai sebuah proses dalam pemilihan alternatif yang paling sesuai dengan tujuan yang telah ditetapkan. Didalam literatur, Analisis keputusan dijelaskan sebagai sebuah prosedur yang sistematis dalam men-trasformasikan masalah-masalah pengambilan keputusan yang masih belum jelas menjadi sebuah keputusan yang lebih jelas dengan urutan langkah yang transparan.</p>
+<p>Penggunaan analisis keputusan dalam penilaian kelayakan proyek memberikan gambaran yang lebih baik terhadap <em>opportunity</em> yang dimiliki, mengevaluasi potensi risiko, memberikan gambaran Informasi apa saja yang diperlukan dan menilai kesiapan untuk melakukan pekerjaan tersebut. Dalam konteks pengambilan keputusan, <em>decision analysis</em> sebaiknya dilihat sebagai sebuah komunikasi antara pengambil keputusan dengan <em>decision facilitator</em> yang bertujuan memberikan <em>insight</em>, sehingga hasil dari analisis keputusan diharapkan memberikan gambaran terbaik terhadap opsi yang dimiliki.</p>
+<p>Adanya faktor <em>uncertainty</em> baik yang disertakan maupun diluar dari batasannya, memungkinkan bahwa hasil terbaik dari <em>decision analysis</em> bisa jadi tidak linier terhadap kesuksesan proyek. Untuk mengurangi akibat dari ketidakakuratan hasil analisis, diperlukan proses analisis keputusan secara bertahap dengan perubahan informasi baru yang dimiliki seiring perjalanan proyek.</p>
+<p>Analisis Pohon Keputusan atau <em>Decision Tree Analysis</em> (DTA) merupakan salah satu metode yang paling sering digunakan dalam proses pengambilan keputusan, implementasi penggunaan metode ini dalam teknik perminyakan sejauh ini sering ditujukan pada tahap eksplorasi <span class="citation">(<a href="#ref-Bratvold2010" role="doc-biblioref">Bratvold and Begg 2010</a>)</span>.</p>
+<p>Modul <em>Decision Analyis</em> <strong>PertaEOR</strong> menggunakan metode DTA dalam melakukan evalusi sebuah proyek. Modul ini didesain secara khusus untuk proyek-proyek EOR. <em>Workflow</em> pada modul DTA untuk <strong>PertaEOR</strong> telah diintegrasikan dengan modul lainnya yang telah ada, seperti: Modul <em>screening</em>, Modul <em>predictive model</em>, Modul keekonomian dan modul analisis monte carlo.</p>
+<p><code>Istilah Decision Facilitator adalah untuk memberikan cakupan yang lebih luas  dari individu-individu yang harus terlibat dalam proses pendefinisian pengambilan keputusan.</code> <span class="citation">(<a href="#ref-Mcnamee2001" role="doc-biblioref">McNamee and Celona 2001</a>)</span></p>
+</div>
+<div id="label2" class="section level2" number="14.2">
+<h2><span class="header-section-number">14.2</span> Stuktur Analisis Pohon Keputusan <em>(Decision Tree Analysis)</em></h2>
+<p>Analisis pohon keputusan atau <em>Decision Tree Analysis (DTA)</em> merupakan salah satu metode pengambilan keputusan yang menggunakan <em>tree-model</em> dalam memvisualisasikan opsi dan kemungkinan yang berpotensi terjadi. DTA secara terstruktur akan memetakan opsi-opsi dan kemungkinan dari sebuah kejadian menjadi sebuah cabang-cabang pohon <em>(tree brach)</em>. Proses perhitungan di <em>tree brach</em> sangat bergantung dari <em>tree node</em> yang di pilih, dua jenis <em>tree node</em> yang digunakan pada DTA adalah <em>option node</em> dan <em>uncertainty node</em>. <em>Option node</em> adalah titik yang akan memberikan cabang berupa opsi yang bisa di pilih dan disertakan, sedangkan <em>uncertainty node</em> adalah titik yang menggambarkan variabel <em>uncertainty</em> dalam sebuah kejadian. Selanjutnya <em>uncertainty</em> akan direpresentasikan dalam sebuah nilai probabilitas, hal ini akan lebih detil dijelaskan pada seksi <a href="13-decisionanalysis.html#label19">14.5.1</a> dan seksi <a href="13-decisionanalysis.html#label20">14.5.2</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="images/decisionanalysis/dtree2.PNG" alt="_Decision Tree Analysis_" width="45%" />
+<p class="caption">
+Gambar 14.1: <em>Decision Tree Analysis</em>
+</p>
+</div>
+<p>Gambar [ref] merupakan sebuah contoh perumusan masalah pada DTA, bagian utama dari struktur <em>tree</em> akan dijelaskan lebih detil pada seksi <a href="13-decisionanalysis.html#label9">14.2.2</a>. Perumusan bagian-bagian yang terkait dengan cabang-cabang yang akan disertakan merupakan hasil dari proses diskusi antara pengambil keputusan dengan <em>decision facilitator</em>. Beberapa hal yang perlu disimpulkan sebelum mebangun sebuah <em>tree</em> adalah pendefinisian: <em>Objective function</em>, <em>alternatif</em> / skenario, dan variabel-variabel yang berkaitan dengan biaya dan ekspektasi yang akan didapatkan. Hal ini akan dijelaskan lebih detil pada seksi <a href="13-decisionanalysis.html#label13">14.4.2</a>.</p>
+<div id="label3" class="section level3" number="14.2.1">
+<h3><span class="header-section-number">14.2.1</span> Elemen Analisis Pohon Keputusan</h3>
+<p>Elemen <em>decision analysis</em> merupakan variabel yang perlu dijelaskan sebelum melakukan evaluasi, variabel tersebut harus dipahami dengan baik oleh pengambil keputusan dan <em>decision facilitator</em>. Menurut <span class="citation">(<a href="#ref-Bratvold2010" role="doc-biblioref">Bratvold and Begg 2010</a>)</span>, ada lima elemen utama pada proses studi pengambilan keputusan yaitu:</p>
+<ul>
+<li><em>Alternatives</em></li>
+<li><em>Objectives</em></li>
+<li><em>Information</em></li>
+<li><em>Payoff</em></li>
+<li><em>Decision</em></li>
+</ul>
+<p>Tiga elemen teratas sering disebut <em>“decision basis”</em> <span class="citation">(<a href="#ref-Howard1988" role="doc-biblioref">Howard 1988</a>)</span>.</p>
+<div id="label4" class="section level4" number="14.2.1.1">
+<h4><span class="header-section-number">14.2.1.1</span> <em>Alternatives</em></h4>
+<p>Alternatif didefinisikan sebagai sebuah pilihan <em>(choices)</em> yang dimiliki sebelum proses pengambilan keputusan, tidak ada keputusan yang diambil jika tidak memiliki opsi <span class="citation">(<a href="#ref-Bratvold2010" role="doc-biblioref">Bratvold and Begg 2010</a>)</span>. Proses pendefinisian alternatif membutuhkan komunikasi antara <em>decision facilitator</em> yang terlibat. Penilaian terhadap sebuah proses pengambilan keputusan apakah sudah menyertakan seluruh opsi yang dimiliki atau belum akan dilakukan pada seksi <a href="13-decisionanalysis.html#dq2">14.4.4.2.2</a>.</p>
+</div>
+<div id="label5" class="section level4" number="14.2.1.2">
+<h4><span class="header-section-number">14.2.1.2</span> <em>Objectives</em></h4>
+<p>Tujuan yang jelas dan dapat dicapai perlu untuk ditetapkan sebelum memulai proses pengambilan keputusan.</p>
+</div>
+<div id="label6" class="section level4" number="14.2.1.3">
+<h4><span class="header-section-number">14.2.1.3</span> <em>Information</em></h4>
+</div>
+<div id="label7" class="section level4" number="14.2.1.4">
+<h4><span class="header-section-number">14.2.1.4</span> <em>Payoff</em></h4>
+</div>
+<div id="label8" class="section level4" number="14.2.1.5">
+<h4><span class="header-section-number">14.2.1.5</span> <em>Decision</em></h4>
+</div>
+</div>
+<div id="label9" class="section level3" number="14.2.2">
+<h3><span class="header-section-number">14.2.2</span> Notasi Baku Analisis Pohon Keputusan</h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="images/decisionanalysis/elm.PNG" alt="_Decision Tree Analysis_" width="45%" />
+<p class="caption">
+Gambar 14.2: <em>Decision Tree Analysis</em>
+</p>
+</div>
+<p>-Notasi Node
+-Notasi Tree
+-Notasi Diagram</p>
+</div>
+</div>
+<div id="label10" class="section level2" number="14.3">
+<h2><span class="header-section-number">14.3</span> Alur Kerja Pengambilan Keputusan</h2>
+</div>
+<div id="label11" class="section level2" number="14.4">
+<h2><span class="header-section-number">14.4</span> <em>Decision Tree Analysis Workflow</em></h2>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="images/decisionanalysis/flow.png" alt="_Decision Tree Analysis_" width="45%" />
+<p class="caption">
+Gambar 14.3: <em>Decision Tree Analysis</em>
+</p>
+</div>
+<div id="label12" class="section level3" number="14.4.1">
+<h3><span class="header-section-number">14.4.1</span> <em>Framing The Problem</em></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="images/decisionanalysis/fram1.PNG" alt="_Decision Tree Analysis_" width="45%" />
+<p class="caption">
+Gambar 14.4: <em>Decision Tree Analysis</em>
+</p>
+</div>
+<p><em>Framing</em> adalah memastikan bahwa terdapat orang-orang yang tepat untuk mengatasi suatu masalah dengan perspektif yang tepat. Terdapat tiga dimensi kunci dalam melakukan <em>framing</em> dengan tepat: tujuan, cakupan, dan perspektif. Ketika tim memulai pekerjaan dalam suatu keputusan, pada beberapa kesempatan terdapat beberapa anggota yang tidak setuju dengan apa yang dilakukan. Tujuan yang jelas harus ditetapkan dan disetujui sebelum tim memulai pekerjaan.
+Dimensi cakupan dalam <em>framing</em> biasanya mudah dilakukan dan dipahami. Cakupan bertujuan untuk menetapkan batasan masalah, jenis-jenis solusi, sumber informasi yang akan membantu dalam penentuan solusi, dan kriteria yang akan digunakan pada pilihan.</p>
+<p>Dimensi perspektif pada <em>framing</em> lebih sulit untuk dideskripsikan. Kita memiliki metode dalam menghadapi berbagai informasi yang kita terima. Analoginya bahwa setiap orang sudah memiliki saringan tersendiri: beberapa informasi diklasifikasikan tidak relevan dan tidak digunakan dari awal proses pembentukan persepsi. Analogi lain adalah suatu bingkai gambar: kita menaruh bingkai di sekeliling masalah, mengeluarkan beberapa hal pada gambar dan memasukkan beberapa hal ke dalamnya. Ketika masalah lintas displin terjadi, penyaringan masalah perlu direvisi dan <em>frame</em> perlu diluaskan. Tidak mungkin tim dapat berpikir strategis atau dapat mengimplementasikan, kecuali jika seluruh anggota memiliki <em>frame</em> yang sama. Kesuksesan dalam <em>framing</em> telah terbukti sangat krusial dalam menentukan kualitas keputusan. Proses-proses utama dan produk-produk pada proses <em>framing</em> adalah sebagi berikut:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Issue Raising</strong>: Kegiatan ini memiliki tiga tujuan: memunculkan materi yang akan dibahas sebanyak mungkin, menyoroti <em>frame</em> antar sesama anggota tim, dan mengembangkan rasa kepemilikan tim terhadap keputusan yang akan diselesaikan.</li>
+<li><strong>Project Vision Statement</strong>: Dilakukan dengan menjawab empat pertanyaan mendasar: Apa yang akan kita lakukan? Kenapa kita melakukan ini? Bagaimana kita tahu bahwa kita akan berhasil? Bagaimana jika gagal?</li>
+<li><strong>Decision Hierarchy</strong>: Merupakan <em>tools</em> yang digunakan untuk menjabarkan rangkaian keputusan yang kompleks seperti gambar di bawah ini.
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="images/decisionanalysis/st.png" alt="_Strategy Table_" width="45%" />
+<p class="caption">
+Gambar 14.5: <em>Strategy Table</em>
+</p>
+</div></li>
+<li><strong>Influence Diagram</strong>: Merupakan <em>tools</em> yang dihunakan untuk melacak keputusan, ketidakpastian, dan keterhubungan di antara keduanya. <em>Influence diagram</em> sangat penting untuk mengembangkan pemahaman tim proyek terhadap masalah dan dalam mengatur pekerjaan.
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="images/decisionanalysis/id.png" alt="_Influence Diagram_" width="45%" />
+<p class="caption">
+Gambar 14.6: <em>Influence Diagram</em>
+</p>
+</div></li>
+<li><strong>Decision Criterion</strong>: Sebelum keputusan dibuat, kriteria keputusan harus ditetapkan dan disetujui bersama. Kriteria terpenting dalam pengambilan keputusan biasanya adalah NPV.</li>
+</ol>
+</div>
+<div id="label13" class="section level3" number="14.4.2">
+<h3><span class="header-section-number">14.4.2</span> <em>Deterministic Analysis</em></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="images/decisionanalysis/sens.PNG" alt="_Decision Tree Analysis_" width="45%" />
+<p class="caption">
+Gambar 14.7: <em>Decision Tree Analysis</em>
+</p>
+</div>
+<p><em>Deterministic analysis</em> digunakan untuk mengevaluasi keekonomian model dari setiap strategi yang telah didapat dari proses <em>framing</em>. Penilaian kecenderungan variabilitas dilakukan untuk setiap parameter untuk mengetahui parameter mana yang memiliki pengaruh besar terhadap keekonomian. Proses ini dilakukan dengan menggunakan <em>Tornado Chart</em> arau <em>Spider Chart</em> dengan melakukan variasi: nilai <em>low</em>, <em>base</em>, dan <em>high</em> untuk setiap parameternya.</p>
+</div>
+<div id="label14" class="section level3" number="14.4.3">
+<h3><span class="header-section-number">14.4.3</span> <em>Probabilistic Analysis</em></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
+<img src="images/decisionanalysis/forward.PNG" alt="_Decision Tree Analysis_" width="45%" />
+<p class="caption">
+Gambar 14.8: <em>Decision Tree Analysis</em>
+</p>
+</div>
+<p>Bilamana <em>deterministic analysis</em> berfokus untuk mengkuantifikasi pengaruh setiap parameter terhadap keekonomian proyek maka dalam <em>probabilistic analysis</em>, seluruh parameter divariasikan secara bersamaan dan pengaruh parameter ketidakpastian yang dikombinasikan dalam proyek dikuantifikasikan sebagai <em>economic value</em> dengan probabilitas terkait yang terjadi. <em>Expected Value</em> (EV) dan probabilitas hasil rata-rata beban juga dihitung. Model probabilistik dibangun dari <em>decision tree analysis</em>. Parameter-parameter yang mendominasi dalam <em>Tornado Chart</em> digunakan untuk membangun <em>decision tree</em>. <em>Decision tree</em> digunakan untuk mengevaluasi seluruh kombinasi kemungkinan hasil yang mungkin terjadi dengan setiap probabilitasnya dan NPV untuk setiap opsi pengembangan. Hasil dari <em>decision tree analysis</em> digambarkan dalam bentuk <em>Cummulative Distribution Function</em> atau <em>Expectation Curve</em> dengan NPV berada di sumbu x dan probabilitas kumulatifnya berada di sumbu y.</p>
+</div>
+<div id="label15" class="section level3" number="14.4.4">
+<h3><span class="header-section-number">14.4.4</span> <em>Appraisal</em></h3>
+<div id="label16" class="section level4" number="14.4.4.1">
+<h4><span class="header-section-number">14.4.4.1</span> <em>Value of Information</em></h4>
+<p>Kebanyakan kegiatan yang <em>petroleum engineer</em> dan <em>geoscientist</em> lakukan, melibatkan kegiatan memperoleh informasi dari satu kegiatan lain ke yang lain. Istilah “informasi” di sini bermakna luas yang mencakup pengambilan data, melakukan studi teknis, menyewa konsultan, melakukan tes diagnostik, dan seterusnya. Harapannya adalah bahwa mengurangi ketidakpastian meningkatkan kesempatan untuk mendapatkan hasil yang diinginkan. Namun nyatanya, alasan satu-satunya dilakukan kegiatan pengumpulan informasi atau analisis teknis adalah untuk memenuhi persyaratan peraturan. Pertanyaan mendasar untuk proses mendapatkan informasi adalah apakah pengurangan ketidakpastian itu sebanding dengan biaya untuk mendapatkan informasi. <em>Value of Information</em> (VoI) dirancang untuk menjawab pertanyaan tersebut.</p>
+<p>Tujuan dari perhitungan VoI, yakni untuk mengestimasi nilai dari kegiatan pengumpulan informasi sehingga suatu keputusan akan diimplementasikan atau tidaknya dibuat berdasarkan basis ekonomi. Agar informasi memiliki nilai, maka perlu adanya perhitungan probabilistik antara informasi dan hasil dari suatu kejadian ketidakpastian. Dalam perhitungan VoI diperlukan beberapa informasi sebagai berikut:</p>
+<ol style="list-style-type: decimal">
+<li><em>Prior probability</em>, estimasi probabilitas dari kemungkinan hasil yang dapat diambil kuantitasnya (misalnya terdapat peluang 30% <em>recovery factor</em> rendah dan peluang 70% <em>recovery factor</em> tinggi).</li>
+<li><em>Reliaility(likelihood)</em>, estimasi probabilitias efisiensi suatu informasi dalam memprediksi hasil (misalnya saat <em>recovery factor</em> diketahui tinggi, studi simulasi reservoir 3D mengindikasikan dengan benar sebesar 80%).</li>
+<li>Nilai moneter proyek untuk setiap kombinasi hasil yang memungkinkan (contohnya NPV 600 USD jika <em>recovery factor</em> tinggi dan NPV 100 USD jika rendah).</li>
+</ol>
+<p>Dalam menghitung VoI, perhitungan biasanya dilakukan dengan menggunakan <em>decision tree</em>. Terdapat dua <em>decision tree</em> yang dihitung, yaitu nilai proyek dengan estimasi probabilitas yang ada dan perkiraan nilai projek baru dengan probabilitas yang diperbarui setelah adanya kegiatan memperoleh informasi. Perbedaan kedua nilai tersebut disebut sebagi <em>expected VoI</em>. Nilai <em>expected VoI</em> terbagi menjadi dua, yaitu:</p>
+<ol style="list-style-type: decimal">
+<li>EVPI (<em>Expected Value of Perfect Information</em>), nilai tersebut diperoleh ketika suatu kegiatan mampu memperoleh hasil informasi dengan tingkat akurasi 100%.</li>
+<li>EVII (<em>Expected Value of Imperfect Information</em>), adapun terdapat kondisi dimana informasi yang didapat tidaklah selalu dapat memberikan kepastian (tingkat akurasi di abwah 100%).</li>
+</ol>
+<p>Pada dua nilai tersebut, EVPI merupakan batas atas nilai suatu informasi. Di sisi lain bisa jadi kegiatan pengambilan informasi ini tidak mengakibatkan adanya perubahan probilitas. <em>Expected value</em> ini dapat dijadikan acuan <em>decision maker</em> untuk membuat keputusan apakah akan melakukan kegiatan untuk memperoleh informasi atau tidak. Ketika nilai <em>expected value</em> berada di bawah biaya untuk memperoleh informasi maka jawabannya jelas, yaitu tidak perlu diproses. Namun, ketika <em>expected value</em> nilainya ada di ata biaya untuk memperoleh informasi maka <em>decision maker</em> dapat mempertimbangkannya. Terdapat beberapa langkah dalam menghitung VoI sebagai berikut:</p>
+<ol style="list-style-type: decimal">
+<li>Menghitung <em>expected value</em> suatu keputusan yang akan dibuat pada kondisi belum terdapat informasi atau bisa disebut dengan istilah <em>base project</em>.</li>
+<li>Mengformulasi struktur <em>decision tree</em> untuk memasukkan informasi baru. Dimulai dengan menambahkan <em>branch</em> baru pada <em>node</em> pertama pada <em>decision tree</em> untuk merepresentasikan pilihan untuk memperoleh informasi. <em>Branch</em> ini harus mengarah pada <em>uncertainty node</em>, yaitu <em>event</em> ketidakpastian yang menjadi hasil dari kegiatan memperoleh informasi. Setiap hasil yangn memungkinkan dari <em>event</em> untuk memperoleh informasi ditambahkan <em>tree</em> yang merepresestasikan <em>base project</em>.</li>
+<li>Menghitung EVPI.</li>
+<li>Menghitung EVII, langkah ini memiliki beberapa turunan, yaitu:
+<ol style="list-style-type: lower-alpha">
+<li>Mengestimasi probabilitas <em>reliability (likelihood)</em>, <em>P(info <strong>says</strong> | real world <strong>is</strong> )</em></li>
+<li>Menghitung probabilitas <em>updated (posterior)</em></li>
+<li>Memasukkan <em>posterior</em> pada <em>decision tree</em></li>
+<li>Menghitung nilai proyek</li>
+</ol></li>
+<li>Menghitung EVII dengan nilai probabilitas <em>reliability (likelihood)</em> yang berbeda-beda.</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<img src="images/decisionanalysis/voi.PNG" alt="_Decision Tree Analysis_" width="45%" />
+<p class="caption">
+Gambar 14.9: <em>Decision Tree Analysis</em>
+</p>
+</div>
+</div>
+<div id="label17" class="section level4" number="14.4.4.2">
+<h4><span class="header-section-number">14.4.4.2</span> <em>Decision Quality</em></h4>
+<p>Terdapat suatu perbedaan definisi yang mendasar antara keputusan dan hasil. Hasil yang baik adalah apa yang kita inginkan sedangkan keputusan yang baik adalah apa yang dapat dilakukan untuk memaksimalkan kemungkinan hasil yang baik. Keputusan yang baik tidak menjamin hasil yang baik tapi pada umumnya keputusan yang baik akan mengarah pada hasil yang baik sehingga dari definisi ini maka yang dapat dilakukan adalah membuat keputusan yang baik, bukan hasil yang baik. Bagi <em>decision-maker</em> tunggal, biasanya penentuan apakah keputusan itu “baik” dapat dilakukan dengan jelas. Di sisi lain, jika berada dalam suatu lingkungan yang terdiri dari beberapa <em>decision-maker</em>, maka penentuan organisasi itu siap mengambil keputusan menjadi cukup sulit. Dalam kondisi tersebut, perlu ada persetujuaan mengenai kualitas dari alternatif, informasi, dan <em>value</em>. <em>Decision Quality</em> di sini berperan sebagai alat yang berfungsi untuk mengevaluasi kualitas dari keputusan.</p>
+<p>Setelah mencapi tahap pendeklarasian keputusan, perlu dipastikan bahwa proses menentukan keputusan tersebut sudah mencapai keputusan yang berkualitas yang dilakukan dengan mengevaluasi keputusan tersebut berdasarkan 6 elemen <em>Decision Quality</em>. Matheson dan Matheson (1998) mensurvei sejumlah besar <em>decison-maker</em> dan menggabungan tanggapan mereka dengan pemikiran akademisi untuk mengembangkan kerangka kerja yang mengevaluasi kualitas dari keputusan dalam 6 dimensi seperti Gambar di bawah ini.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<img src="images/decisionanalysis/bagan.png" alt="Elemen _Decision Quality_" width="55%" />
+<p class="caption">
+Gambar 14.10: Elemen <em>Decision Quality</em>
+</p>
+</div>
+<p>Elemen-elemen tersebut direpresentasikan dalam sebagai hubungan dalam rantai keputusan akan hanya sekuat mata rantai yang paling lemah. Jika setiap elemen kuat, maka kualitas keputusan adalah tinggi. Jika salah satu elemen lemah, maka kualitas keputusan tidak lebih baik dari elemen yang lemah tersebut. Setiap elemen harus dipertimbangkan berdasarkan perspektif kepala dan hati karena keputusan harus masuk akal dan terasa benar. Setiap dari 6 elemen tersebut harus mencapai kualitas terbaiknya: <em>helpful frame</em>, <em>creative alternatives</em>, <em>useful information</em>, <em>clear values</em>, <em>sound reasoning</em>, dan <em>commitment to follow through</em>.</p>
+<div id="dq1" class="section level5" number="14.4.4.2.1">
+<h5><span class="header-section-number">14.4.4.2.1</span> <em>1. Helpful Frame</em></h5>
+<p>Titik awal adalah mengidentifikasi keputusan yang akan dibuat secara jelas dan seberapa akurat keputusan itu untuk dinilai. <em>Helpful frame</em> memperjelas situasi yang akan dipecahkan. Langkah pada tahap ini sangat penting. Mendapat pertanyaan yang baik dari kerangka masalah yang buruk adalah tidak berguna. Sebagai <em>engineer</em> dan <em>geoscientists</em>, mereka cenderung untuk segera menghasilkan model (sebagai contoh, <em>tools</em> simulasi, <em>spreadsheets</em>, model dan analisi geologi, dan lain-lain) saat menghadapi situasi keputusan yang baru. <em>Decision-maker</em> yang sudah ahli, bagaimanapun, mengetahui bahwa mereka harus mengidentifikasi secara sadar apa uang harus diputuskan. Terlalu sering terdesak waktu dan membutuhkan jawaban yang segera, <em>decision-maker</em> yang belum berpengalaman terjun ke dalam untuk mengumpulkan informasi atau membangun model kuantitatif tanpa berhenti untuk mengajukan pertanyaan-pertanyaan sebagai berikut ini:</p>
+<ul>
+<li>Apa yang diputuskan?</li>
+<li>Apa yang tidak diputuskan?</li>
+<li>Apa yang akan didapat dari yang diberi?</li>
+<li>Apakah asumsi-asumsi sudah ditentukan secara jelas?</li>
+</ul>
+<p>Terlepas dari seberapa sedikit waktu yang tersedia, seseorag tidak boleh melewatkan menanyakan pertanyaan-pertanyaan <em>framing-type</em>. Jika tidak bertanya dengan baik, maka memungkinkan akan lebih banyak waktu yang terbuang daripada “menghemat” karena mengambil risiko memecahkan masalah yang salah.</p>
+</div>
+<div id="dq2" class="section level5" number="14.4.4.2.2">
+<h5><span class="header-section-number">14.4.4.2.2</span> <em>2. Creative Alternatives</em></h5>
+<p>Kurangnya tingkat kreativitas dan fleksibilitas alternatif adalah salah satu alasan utama perusahaan-perusahaan memiliki kesulitan dalam mencapai keputusan yang berkualitas tinggi. Bagian ini dapat diilustrasikan dengan menanyakan pertanyaan-pertanyaan sebagai berikut ini:</p>
+<ul>
+<li>Apa saja pilihan-pilihan kita?</li>
+<li>Apakah alternatif-alternatif tersebut dapat dilakukan?</li>
+<li>Apakah alternatif tersebut memecahkan masalah?</li>
+<li>Apakah berbagai alternatif lain sudah dipertimbangkan?</li>
+</ul>
+<p>Bagian ini membutuhkan suatu tim untuk menggali ide-ide dan menjadi kreatif. Setiap alternatif yang telah diindetifikasi harus konsisten secara logika dan bisa dilakukan. Kualitas setiap keputusan hanya bisa sebaik alternatifnya yang telah diidentifikasi, jika tidak ada alternatif maka tidak ada keputusan.</p>
+</div>
+<div id="dq3" class="section level5" number="14.4.4.2.3">
+<h5><span class="header-section-number">14.4.4.2.3</span> <em>3. Useful Information</em></h5>
+<p>Bagian ini menjelaskan kebutuhan untuk menggunakan informasi yang terpercaya dan relevan yang berkaitan dengan penentuan keputusan. Hal tersebut dapat diilustrasikan dengan menanyakan pertanyaan-pertanyaan di bawah ini:</p>
+<ul>
+<li>Apa yang kita ketahui?</li>
+<li>Apakah kita memiliki informasi yang penting?</li>
+<li>Apakah informasi tersebut tidak bias?</li>
+<li>Seberapa akurat kita di masa lalu dengan penilaian serupa?</li>
+<li>Informasi apa dikumpulkan dengan adanya lebih banyak waktu/uang/sumber daya?</li>
+</ul>
+<p>Perusahaan-perusahaan dan individu-individu seringkali baik dalam memasukkan apa yang mereka tahu dalam analisis. Namun, keenderungan yang sangat berbahaya diilustrasikan dengan tepat sebagai berikut: <em>“Bukan banyaknya hal yang tidak kita ketahui yang membuat kita dalam masalah. Namun, hal-hal yang kita ketahui tidak seperti itu seharusnya”</em>. Kunci dari kualitas bagian ini adalah informasi mengenai apa yang belum diketahui (yaitu, keterbatasan pengetahuan). Terlalu banyak keputusan yang dibuat berdasarkan kesalahan atau kekurangan informasi. Penentuan kebutuhan informasi dan mengumpulan informasi yang bermanfaat secara sadar sebelum eksekusi merupakan hal yang sangat penting dilakukan untuk membuat keputusan yang baik.</p>
+</div>
+<div id="dq4" class="section level5" number="14.4.4.2.4">
+<h5><span class="header-section-number">14.4.4.2.4</span> <em>4. Clear Values</em></h5>
+<p>Seperti yang telah dibahas sebelumnya, komponen yang sangat penting untuk memebuat keputusan yang baik adalah mendefinisikan dan mengartikulasikan dengan jelas kriteria untuk mengukur <em>value</em> dari alternatif-alternatif dan bagaimana perusahaan membuat <em>tradeoffs</em> pada setiap alternatif. Untuk kebanyakan perusahaan-perusahaan E&amp;P, kriteria kuncinya adalah beberapa dari kombinasi NPV, <em>cash flow</em>, produksi, dan penggantian <em>reserves</em>. Pertanyaan-pertanyaan yang dapat ditanyakan adalah sebagai berikut:</p>
+<ul>
+<li>Konsekuensi-konsekuensi apa saja yang perlu diperhatikan?</li>
+<li><em>Tradeoff</em> apa saja yang dihasilkan?</li>
+<li>Apakah kita bisa mengukur <em>value</em> secara akurat di masa lalu?</li>
+</ul>
+<p><em>Tradeoff</em> seringkali dibutuhkan, dan kejelasan mengenai bagaimana kriteria dirankingkan juga sangat penting. <em>Value metric</em> yang biasa digunakan pada E&amp;P adalah pengurangan <em>uncertainty</em> atau peningkatan kepercayaan. Seperti yang telah dibahas sebelumnya, <em>metric-metric</em> ini tidak memiliki nilai ekonomi. Bahaya lain adalah mengabaikan <em>metric</em> keputusan yang <em>intangible</em>, seperti reputasi atau keamanan perusahaan.</p>
+</div>
+<div id="dq5" class="section level5" number="14.4.4.2.5">
+<h5><span class="header-section-number">14.4.4.2.5</span> <em>5. Sound Reasoning</em></h5>
+<p><em>Reasoning</em> adalah bagaimana kita mengkombinasikan alternatif, informasi, dan <em>value</em> agar menjadi keputusan. Itu adalah jawaban kita atas pertanyaan: “Kami memilih alternif ini karena …..” Bagian ini membutuhkan penggabungan input dari bagian-bagian sebelumnya untuk menentukan alternatif manakah yang menghasilkan <em>value</em> terbanyak. Pada kebanyakan kasus, situasi keputusan cukup kompleks untuk memercayakan pada intuisi dan membutuhkan model. Bagian ini dapt diilustrasikan dengan menanyakan pertanyaan: “Apakah saya berpikir jernih tentang ini?”</p>
+<p>Pada industri E&amp;P tidak terbiasa untuk mengembangkan model yang terlalu rumit untuk menyampaikan kejelasan dan transparansi yang dibutuhkan. Prosedur biasa dalam pengembangan “<em>base case</em>” terkadang menghasilkan determinisktik model yang terlalu detail dan kompleks yang mengabaikan tidak hanya <em>uncertainties</em> tetapi juga variabel-variabel kunci.</p>
+<p>Tujuan dari evaluasi adalah untuk mengembangkan rekomendasi yang jelas, transparan, dan mudah dimengerti. Rekomendasi yang mampu memaksimalkan <em>value</em> dari <em>decision-maker</em>.</p>
+</div>
+<div id="dq6" class="section level5" number="14.4.4.2.6">
+<h5><span class="header-section-number">14.4.4.2.6</span> <em>6. Commitment to Follow Through</em></h5>
+<p>Bagian ini menggerakkan keputusan ke tahap implementasi, yang mana tidak trivial. Keputusan terbaik tidak berguna jika organisasi tidak mengimplementasikannya. Jika komitmen yang dimilki hanya setengah hati, maka pelaksanaanya biasanya kurang intens dan mungkin tidak mencapai hasil yang terbaik. Bagian ini dapat diilustrasikan dengan menanyakan beberapa pertanyaan:</p>
+<ul>
+<li>Apakah rekomendasi sesuai dan bisa dilakukan?</li>
+<li>Bagaimana kita akan mengkomunikasikan keputusan?</li>
+<li>Apakah organisasi bisa mendukung keputusan tersebut?</li>
+<li>Apakah sudah terdapat rencana implementasi?</li>
+</ul>
+<p>Pelaksanaan yang sukses membutuhkan sumber daya, seperti waktu, usaha, uang, atau bantuan dari pihak lain. Selain itu pula juga membutuhkan kesiapan untuk mengatasi permasalahan. Berikut ini adalah beberapa contoh pertanyaan yang ada dalam modul <em>Decision Quality</em>.</p>
+<table>
+<caption><span style="color: grey;"> Tabel 13.1: Pertanyaan-Pertanyaan dalam Modul Decision Quality </span></caption>
+<colgroup>
+<col width="1%" />
+<col width="80%" />
+<col width="17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Question</th>
+<th align="left">Kategori</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">apakah sudah tersedia analisa HSSE dan amdal?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">apakah sudah dilaksanakan evaluasi keekonomian? (IRR &gt; 10%)</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">apakah sudah memiliki pattern design?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">apakah telah membuat program monitoring dan surveillance?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">bagaimana kondisi operasional saat ini (kondisi sumur, fasilitas produksi, dan sumber media EOR?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">apakah project telah mendapat persetujuan dari pihak-pihak terkait? (Mulai dari pengadaan barang sampai monitoring dan surveillance)</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="odd">
+<td align="left">7</td>
+<td align="left">apakah terdapat dana yang teralokasi khusus unutuk kegiatan EOR?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="even">
+<td align="left">8</td>
+<td align="left">apakah ada sumber daya manusia yang capable dibidang EOR?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="odd">
+<td align="left">9</td>
+<td align="left">apakah sudah melalui uji laboratorium yang baik? (IRF &gt; 10%)</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="even">
+<td align="left">10</td>
+<td align="left">apakah baseline sudah dibuat dan disepekati semua pihak?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="odd">
+<td align="left">11</td>
+<td align="left">apakah sudah memiliki program abandomant and site restoration?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="even">
+<td align="left">12</td>
+<td align="left">apakah sudah membuat project schedule?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="odd">
+<td align="left">13</td>
+<td align="left">apakah sudah memiliki model GGRPF?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="even">
+<td align="left">14</td>
+<td align="left">apakah sudah membuat forecast produksi?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="odd">
+<td align="left">15</td>
+<td align="left">Apakah jelas latar belakang, isi dan tujuan usulan?</td>
+<td align="left">Helpful Frame</td>
+</tr>
+<tr class="even">
+<td align="left">16</td>
+<td align="left">Seberapa besar pengetahuan dari stakeholder terhadap usulan?</td>
+<td align="left">Helpful Frame</td>
+</tr>
+<tr class="odd">
+<td align="left">17</td>
+<td align="left">Seberapa besar prioritas dari usulan?</td>
+<td align="left">Clear Value</td>
+</tr>
+<tr class="even">
+<td align="left">18</td>
+<td align="left">Seberapa besar pengaruh ke anggaran dari usulan?</td>
+<td align="left">Clear Value</td>
+</tr>
+<tr class="odd">
+<td align="left">19</td>
+<td align="left">Apakah ada kemungkinan alternative lain dari usulan?</td>
+<td align="left">Creative Alternatives</td>
+</tr>
+<tr class="even">
+<td align="left">20</td>
+<td align="left">Apakah dari usulan ada opsi yang bias dikurangi/efisien?</td>
+<td align="left">Creative Alternatives</td>
+</tr>
+<tr class="odd">
+<td align="left">21</td>
+<td align="left">Apakah usulan Realistik dan bias dilaksanakan sesuai waktu?</td>
+<td align="left">Creative Alternatives</td>
+</tr>
+<tr class="even">
+<td align="left">22</td>
+<td align="left">Bila usulan diterima, apa yang bias didapat untuk menguntungkan PTM?</td>
+<td align="left">Clear Value</td>
+</tr>
+<tr class="odd">
+<td align="left">23</td>
+<td align="left">Seberapa lengkap dari usulan yang harus disampaikan?</td>
+<td align="left">Useful Information</td>
+</tr>
+<tr class="even">
+<td align="left">24</td>
+<td align="left">Seberapa yakin dari sumber informasi/teknologi usulan?</td>
+<td align="left">Useful Information</td>
+</tr>
+<tr class="odd">
+<td align="left">25</td>
+<td align="left">Seberapa jelas usulan dari kebutuhan dan fakta kegunaannya?</td>
+<td align="left">Clear Value</td>
+</tr>
+<tr class="even">
+<td align="left">26</td>
+<td align="left">Seberapa jauh dapat diindentifikasi dan diklarifikasi kriteria usulan yang paling penting?</td>
+<td align="left">Clear Value</td>
+</tr>
+<tr class="odd">
+<td align="left">27</td>
+<td align="left">Seberapa baik kriteria usulan dalam prioritas yang mencerminkan Keuntungan internal PTM?</td>
+<td align="left">Clear Value</td>
+</tr>
+<tr class="even">
+<td align="left">28</td>
+<td align="left">Seberapa komprehensif kriteria untuk mengukur kesuksesan dalam tujuan proyek dan keuntungan PTM?</td>
+<td align="left">Clear Value</td>
+</tr>
+<tr class="odd">
+<td align="left">29</td>
+<td align="left">Seberapa lengkap dan komprehensif dari riset, logic dan temuan dari usulan?</td>
+<td align="left">Sound Reasoning</td>
+</tr>
+<tr class="even">
+<td align="left">30</td>
+<td align="left">Seberapa jelas dapat dijelaskan dari pilihan opsi dari opsi usulan yang diusulkan?</td>
+<td align="left">Sound Reasoning</td>
+</tr>
+<tr class="odd">
+<td align="left">31</td>
+<td align="left">Seberapa lengkap dari organisasi yang mengevaluasi usulan ini?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="even">
+<td align="left">32</td>
+<td align="left">Seberapa yakin hasil yang didapat dari usulan?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="odd">
+<td align="left">33</td>
+<td align="left">Apakah PTM siap dari sisi resource untuk melaksanakan usulan ini?</td>
+<td align="left">Commitment to Follow Through</td>
+</tr>
+<tr class="even">
+<td align="left">34</td>
+<td align="left">Seberapa jauh PTM terlewatkan dari substantive analisis yang berpengaruh terhadap kualitas usulan?</td>
+<td align="left">Clear Value</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="label18" class="section level2" number="14.5">
+<h2><span class="header-section-number">14.5</span> Pemetaan Ketidakpastian</h2>
+<div id="label19" class="section level3" number="14.5.1">
+<h3><span class="header-section-number">14.5.1</span> Apa itu <em>Uncertainty</em></h3>
+</div>
+<div id="label20" class="section level3" number="14.5.2">
+<h3><span class="header-section-number">14.5.2</span> <em>Uncertainty &amp; Probability</em></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
+<img src="images/decisionanalysis/dist.PNG" alt="_Decision Tree Analysis_" width="95%" />
+<p class="caption">
+Gambar 14.11: <em>Decision Tree Analysis</em>
+</p>
+</div>
+</div>
+</div>
+<div id="label21" class="section level2" number="14.6">
+<h2><span class="header-section-number">14.6</span> Menciptakan Nilai dari Sebuah Ketidakpastian</h2>
+<div id="label22" class="section level3" number="14.6.1">
+<h3><span class="header-section-number">14.6.1</span> <em>Value of Information</em></h3>
+</div>
+<div id="label23" class="section level3" number="14.6.2">
+<h3><span class="header-section-number">14.6.2</span> <em>Value of Flexibility</em></h3>
+<p><a href="13-decisionanalysis.html#label1">14.1</a></p>
+</div>
+</div>
+<div id="label24" class="section level2" number="14.7">
+<h2><span class="header-section-number">14.7</span> Tantangan Dalam Pengambilan Keputusan</h2>
+</div>
+<div id="label25" class="section level2" number="14.8">
+<h2><span class="header-section-number">14.8</span> Bias</h2>
+</div>
+<div id="label26" class="section level2" number="14.9">
+<h2><span class="header-section-number">14.9</span> <em>Encoding Probabilities</em></h2>
+<p><a href="https://bookdown.org/yihui/bookdown/cross-references.html">bookdown</a></p>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Bratvold, Reidar B., and Steve H. Begg. 2010. <em>Making Good Decisions</em>. 1nd ed. Richardson, TX: Society of Petroleum Engineers. <a href="https://store.spe.org/Making-Good-Decisions-P413.aspx">https://store.spe.org/Making-Good-Decisions-P413.aspx</a>.
+</div>
+<div class="csl-entry">
+Howard, Ronald A. 1988. <span>“<span class="nocase">Decision Analysis: Practice and Promise</span>.”</span> <em>Management Science</em> 34: 679–95. https://doi.org/<a href="https://doi.org/10.1287/mnsc.34.6.679">https://doi.org/10.1287/mnsc.34.6.679</a>.
+</div>
+<div class="csl-entry">
+McNamee, Peter, and John Celona. 2001. <em>Decision Analysis for the Professional</em>. 4th ed. USA: SmartOrg, Inc. <a href="https://www.amazon.com/Decision-Analysis-Professional-John-Celona/dp/0971056900">https://www.amazon.com/Decision-Analysis-Professional-John-Celona/dp/0971056900</a>.
+</div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Bratvold2010" class="csl-entry">
+Bratvold, Reidar B., and Steve H. Begg. 2010. <em>Making Good Decisions</em>. 1nd ed. Richardson, TX: Society of Petroleum Engineers. <a href="https://store.spe.org/Making-Good-Decisions-P413.aspx">https://store.spe.org/Making-Good-Decisions-P413.aspx</a>.
+</div>
+<div id="ref-Howard1988" class="csl-entry">
+Howard, Ronald A. 1988. <span>“<span class="nocase">Decision Analysis: Practice and Promise</span>.”</span> <em>Management Science</em> 34: 679–95. https://doi.org/<a href="https://doi.org/10.1287/mnsc.34.6.679">https://doi.org/10.1287/mnsc.34.6.679</a>.
+</div>
+<div id="ref-Mcnamee2001" class="csl-entry">
+McNamee, Peter, and John Celona. 2001. <em>Decision Analysis for the Professional</em>. 4th ed. USA: SmartOrg, Inc. <a href="https://www.amazon.com/Decision-Analysis-Professional-John-Celona/dp/0971056900">https://www.amazon.com/Decision-Analysis-Professional-John-Celona/dp/0971056900</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="12-chemicalhnp.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
